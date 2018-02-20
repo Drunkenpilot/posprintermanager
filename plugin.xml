@@ -1,7 +1,2 @@
 <?xml version='1.0' encoding='utf-8'?>
-<plugin id="cordova.plugin.posprintermanager" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
-    <name>posprintermanager</name>
-    <js-module name="posprintermanager" src="www/posprintermanager.js">
-        <clobbers target="cordova.plugins.posprintermanager" />
-    </js-module>
-</plugin>
+<plugin id="cordova.plugin.posprintermanager" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android"><name>posprintermanager</name><js-module name="posprintermanager" src="www/posprintermanager.js"><clobbers target="cordova.plugins.posprintermanager" /></js-module><platform name="android"><config-file parent="/*" target="res/xml/config.xml"><feature name="posprintermanager"><param name="android-package" value="cordova.plugin.posprintermanager.posprintermanager" /></feature></config-file><config-file parent="/*" target="AndroidManifest.xml"></config-file><source-file src="src/android/posprintermanager.java" target-dir="src/cordova/plugin/posprintermanager/posprintermanager" /></platform></plugin>

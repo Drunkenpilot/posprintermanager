@@ -1,0 +1,22 @@
+{
+  "name": "posprintermanager",
+  "version": "0.0.1",
+  "description": "Pos Printer Manager",
+  "cordova": {
+    "id": "cordova.plugin.posprintermanager",
+    "platforms": []
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Drunkenpilot/posprintermanager.git"
+  },
+  "keywords": [
+    "ecosystem:cordova"
+  ],
+  "author": "Beta Life",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Drunkenpilot/posprintermanager/issues"
+  },
+  "homepage": "https://github.com/Drunkenpilot/posprintermanager#readme"
+}
