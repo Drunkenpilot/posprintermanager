@@ -30,7 +30,7 @@ public class posprintermanager extends CordovaPlugin {
         if(action.equals("buildImage")) {
             // final JSONArray printContent = args.optJSONArray(0);
             // final int printTemplate = args.optInt(1);
-            this.buildImage(printContent, printTemplate);
+            this.buildImage(); //printContent, printTemplate
             return true;
         }
         return false;
