@@ -4,7 +4,8 @@ import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
 
 import java.io.FileOutputStream;
-import java.io.OutputStream;
+// import java.io.OutputStream;
+import java.lang.Exception;
 import java.io.File;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,18 +41,25 @@ public class posprintermanager extends CordovaPlugin {
 		ReceiptBuilderExt receiptBuilder = new ReceiptBuilderExt(cordova.getActivity());
         Bitmap testImg = receiptBuilder.build(printContent);
         //save Bitmap to file
+        } catch(JSONException e){
+        this.showToast("Errors");
+        }
+        
+        try{
         String path = Environment.getExternalStorageDirectory().toString();
-        OutputStream fOut = null;
+
         File file = new File(path, "test.jpg");
-        fOut = new FileOutputStream(file);
+        FileOutputStream fOut = new FileOutputStream(file);
         testImg.compress(Bitmap.CompressFormat.JPEG, 85, fOut);
         fOut.close();    
+        } catch (Exception e) {
+            e.printStackTrack();
+        }
+
+
 
         this.showToast("Image built");
         // callbackContext.success(testImg);
-        } catch(JSONException e){
-        this.showToast("Errors");
-		}
 
     }
 

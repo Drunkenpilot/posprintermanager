@@ -4,7 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-// import be.betalife.betarestoapp.R;
+import com.betaresto.terminal.R;
 import com.github.danielfelgar.drawreceiptlib.ReceiptBuilder;
 
 import android.app.Activity;
