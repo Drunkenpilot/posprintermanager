@@ -51,7 +51,7 @@ public class posprintermanager extends CordovaPlugin {
         testImg.compress(Bitmap.CompressFormat.JPEG, 85, fOut);
         fOut.close();    
         }  catch (Exception e) {
-            Log.e("Error", Log.getStackTraceString(e));
+            Log.e("TestError: ", Log.getStackTraceString(e));
         }
 
 
