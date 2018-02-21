@@ -15,6 +15,7 @@ import com.betaresto.terminal.R;
 import android.graphics.Bitmap;
 import android.os.Environment;
 import android.widget.Toast;
+import android.util.Log;
 /**
  * This class echoes a string called from JavaScript.
  */
@@ -50,7 +51,7 @@ public class posprintermanager extends CordovaPlugin {
         testImg.compress(Bitmap.CompressFormat.JPEG, 85, fOut);
         fOut.close();    
         }  catch (Exception e) {
-            e.printStackTrack();
+            Log.e("Error", Log.getStackTraceString(e))
         }
 
 
