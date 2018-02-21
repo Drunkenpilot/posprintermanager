@@ -3,10 +3,14 @@ package cordova.plugin.posprintermanager;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
 
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.io.File;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.graphics.Bitmap;
 import android.widget.Toast;
 /**
  * This class echoes a string called from JavaScript.
@@ -21,24 +25,32 @@ public class posprintermanager extends CordovaPlugin {
 
         this.callbackContext = callbackContext;
 
-        // if (action.equals("coolMethod")) {
-        //     String message = args.getString(0);
-        //     this.coolMethod(message, callbackContext);
-        //     return true;
-        // }
-
         if(action.equals("buildImage")) {
-            // final JSONArray printContent = args.optJSONArray(0);
-            // final int printTemplate = args.optInt(1);
-            this.buildImage(); //printContent, printTemplate
+            final JSONArray printContent = args.optJSONArray(0);
+            final int printTemplate = args.optInt(1);
+            this.buildImage(printContent, printTemplate);
             return true;
         }
         return false;
     }
 
-    private void buildImage() { // final JSONArray printContent, final int printTemplate
+    private void buildImage(final JSONArray printContent, final int printTemplate) {
+        try{
+		ReceiptBuilderExt receiptBuilder = new ReceiptBuilderExt(cordova.getActivity());
+        Bitmap testImg = receiptBuilder.build(printContent);
+        //save Bitmap to file
+        String path = Environment.getExternalStorageDirectory().toString();
+        OutputStream fOut = null;
+        File file = new File(path, "test.jpg");
+        fOut = new FileOutputStream(file);
+        testImg.compress(Bitmap.compressFormat.JPEG, 85, fOut);
+        fOut.close();    
 
-        this.showToast("Plugin ok");
+        this.showToast("Image built");
+        // callbackContext.success(testImg);
+        } catch(JSONException e){
+        this.showToast("Errors");
+		}
 
     }
 
