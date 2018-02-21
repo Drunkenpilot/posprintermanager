@@ -11,6 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.graphics.Bitmap;
+import android.os.Environment;
 import android.widget.Toast;
 /**
  * This class echoes a string called from JavaScript.
@@ -43,7 +44,7 @@ public class posprintermanager extends CordovaPlugin {
         OutputStream fOut = null;
         File file = new File(path, "test.jpg");
         fOut = new FileOutputStream(file);
-        testImg.compress(Bitmap.compressFormat.JPEG, 85, fOut);
+        testImg.compress(Bitmap.CompressFormat.JPEG, 85, fOut);
         fOut.close();    
 
         this.showToast("Image built");
