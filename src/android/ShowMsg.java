@@ -1,4 +1,4 @@
-package be.betalife.cordova.plugin.posprintermanager;
+package cordova.plugin.posprintermanager;
 
 import com.epson.epos2.Epos2CallbackCode;
 import com.epson.epos2.Epos2Exception;
@@ -7,7 +7,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import be.betalife.betarestoapp.R;
+// import be.betalife.betarestoapp.R;
 
 public class ShowMsg {
 

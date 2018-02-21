@@ -1,10 +1,10 @@
-package be.betalife.cordova.plugin.posprintermanager;
+package cordova.plugin.posprintermanager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import be.betalife.betarestoapp.R;
+// import be.betalife.betarestoapp.R;
 import com.github.danielfelgar.drawreceiptlib.ReceiptBuilder;
 
 import android.app.Activity;
