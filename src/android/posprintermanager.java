@@ -11,6 +11,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.betaresto.terminal.R;
 import android.graphics.Bitmap;
 import android.os.Environment;
 import android.widget.Toast;
@@ -37,14 +38,10 @@ public class posprintermanager extends CordovaPlugin {
     }
 
     private void buildImage(final JSONArray printContent, final int printTemplate) {
-        try{
+
 		ReceiptBuilderExt receiptBuilder = new ReceiptBuilderExt(cordova.getActivity());
         Bitmap testImg = receiptBuilder.build(printContent);
         //save Bitmap to file
-        } catch(JSONException e){
-        this.showToast("Errors");
-        }
-        
         try{
         String path = Environment.getExternalStorageDirectory().toString();
 
@@ -52,7 +49,7 @@ public class posprintermanager extends CordovaPlugin {
         FileOutputStream fOut = new FileOutputStream(file);
         testImg.compress(Bitmap.CompressFormat.JPEG, 85, fOut);
         fOut.close();    
-        } catch (Exception e) {
+        }  catch (Exception e) {
             e.printStackTrack();
         }
 

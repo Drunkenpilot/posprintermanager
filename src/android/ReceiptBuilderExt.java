@@ -7,6 +7,7 @@ import org.json.JSONObject;
 import com.betaresto.terminal.R;
 import com.github.danielfelgar.drawreceiptlib.ReceiptBuilder;
 
+import android.R;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.Color;
