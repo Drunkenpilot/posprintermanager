@@ -13,7 +13,7 @@
 <config-file parent="/*" target="AndroidManifest.xml"></config-file>
 <source-file src="src/android/posprintermanager.java" target-dir="src/cordova/plugin/posprintermanager/posprintermanager" />
 <source-file src="src/android/ReceiptBuilderExt.java" target-dir="src/cordova/plugin/posprintermanager/posprintermanager" />
-<source-file src="src/android/ShowMsg.java" target-dir="src/cordova/plugin/posprintermanager/posprintermanager" />
+<!-- <source-file src="src/android/ShowMsg.java" target-dir="src/cordova/plugin/posprintermanager/posprintermanager" /> -->
 
 <source-file src="src/android/drawreceiptlib/DrawBlankSpace.java" target-dir="src/android/drawreceiptlib"/>
 <source-file src="src/android/drawreceiptlib/DrawImage.java" target-dir="src/android/drawreceiptlib"/>
