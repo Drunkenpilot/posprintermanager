@@ -21,11 +21,11 @@ public class posprintermanager extends CordovaPlugin {
 
         this.callbackContext = callbackContext;
 
-        if (action.equals("coolMethod")) {
-            String message = args.getString(0);
-            this.coolMethod(message, callbackContext);
-            return true;
-        }
+        // if (action.equals("coolMethod")) {
+        //     String message = args.getString(0);
+        //     this.coolMethod(message, callbackContext);
+        //     return true;
+        // }
 
         if(action.equals("buildImage")) {
             // final JSONArray printContent = args.optJSONArray(0);
