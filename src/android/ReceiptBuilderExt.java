@@ -7,7 +7,6 @@ import org.json.JSONObject;
 import com.betaresto.terminal.R;
 import com.github.danielfelgar.drawreceiptlib.ReceiptBuilder;
 
-import android.R;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -37,13 +36,22 @@ public class ReceiptBuilderExt {
 	 * </pre>
 	 */
 
-	public ReceiptBuilderExt(Activity activity) {
+	public ReceiptBuilderExt(Activity activity, JSONArray printCanvas) {
 		Log.i("打印数据","打印数据1");
-		int width = activity.getResources().getInteger(R.integer.width);
-		int marginBottom = activity.getResources().getInteger(R.integer.marginBottom);
-		int marginLeft = activity.getResources().getInteger(R.integer.marginLeft);
-		int marginRight = activity.getResources().getInteger(R.integer.marginRight);
-		int marginTop = activity.getResources().getInteger(R.integer.marginTop);
+		// int width = activity.getResources().getInteger(R.integer.width);
+		// int marginBottom = activity.getResources().getInteger(R.integer.marginBottom);
+		// int marginLeft = activity.getResources().getInteger(R.integer.marginLeft);
+		// int marginRight = activity.getResources().getInteger(R.integer.marginRight);
+		// int marginTop = activity.getResources().getInteger(R.integer.marginTop);
+
+
+		int width = printCanvas.optInt(0);
+		int marginTop = printCanvas.optInt(1);
+		int marginRight = printCanvas.optInt(2);
+		int marginBottom = printCanvas.optInt(3);
+		int marginLeft = printCanvas.optInt(4);
+		
+
 
 		Log.d("width","Width = " + width);
 		this.activity = activity;

@@ -32,15 +32,16 @@ public class posprintermanager extends CordovaPlugin {
         if(action.equals("buildImage")) {
             final JSONArray printContent = args.optJSONArray(0);
             final int printTemplate = args.optInt(1);
-            this.buildImage(printContent, printTemplate);
+            final JSONArray printCanvas = args.optJSONArray(2);
+            this.buildImage(printContent, printTemplate, printCanvas);
             return true;
         }
         return false;
     }
 
-    private void buildImage(final JSONArray printContent, final int printTemplate) {
+    private void buildImage(final JSONArray printContent, final int printTemplate, final JSONArray printCanvas) {
 
-		ReceiptBuilderExt receiptBuilder = new ReceiptBuilderExt(cordova.getActivity());
+		ReceiptBuilderExt receiptBuilder = new ReceiptBuilderExt(cordova.getActivity(), printCanvas);
         Bitmap testImg = receiptBuilder.build(printContent);
         //save Bitmap to file
         try{
