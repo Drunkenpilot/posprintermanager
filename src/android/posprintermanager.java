@@ -68,7 +68,7 @@ public class posprintermanager extends CordovaPlugin {
         testImg.compress(Bitmap.CompressFormat.JPEG, 85, fOut);
         fOut.close();    
         this.showToast("Image built");
-        callbackContext.success(path  + filename);
+        callbackContext.success(path  + '/' + filename);
         }  catch (Exception e) {
             Log.e("TestError: ", Log.getStackTraceString(e));
             this.callbackContext.error(Log.getStackTraceString(e));
