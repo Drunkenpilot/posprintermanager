@@ -44,7 +44,7 @@ public class posprintermanager extends CordovaPlugin {
             final JSONArray printCanvas = args.optJSONArray(2);
             cordova.getThreadPool().execute(new Runnable() {
 				public void run() {
-            this.buildImage(printContent, printTemplate, printCanvas);
+                    buildImage(printContent, printTemplate, printCanvas);
                 }
             });
             return true;
@@ -75,8 +75,6 @@ public class posprintermanager extends CordovaPlugin {
              this.showToast("Image build failed");
         }
         
-
-
     }
 
 	private void showToast(final String message) {
