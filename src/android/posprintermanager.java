@@ -22,7 +22,12 @@ import android.util.Log;
 public class posprintermanager extends CordovaPlugin {
     // declarations
     private CallbackContext callbackContext = null;
-    
+    // Storage Permissions
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    private static String[] PERMISSIONS_STORAGE = {
+        Manifest.permission.READ_EXTERNAL_STORAGE,
+        Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
@@ -40,6 +45,9 @@ public class posprintermanager extends CordovaPlugin {
     }
 
     private void buildImage(final JSONArray printContent, final int printTemplate, final JSONArray printCanvas) {
+
+        this.verifyStoragePermissions(cordova.getActivity());
+
         try{
 		ReceiptBuilderExt receiptBuilder = new ReceiptBuilderExt(cordova.getActivity(), printCanvas);
         Bitmap testImg = receiptBuilder.build(printContent);
@@ -62,21 +70,33 @@ public class posprintermanager extends CordovaPlugin {
 
     }
 
-    // private void coolMethod(String message, CallbackContext callbackContext) {
-    //     if (message != null && message.length() > 0) {
-    //         callbackContext.success(message);
-    //     } else {
-    //         callbackContext.error("Expected one non-empty string argument.");
-    //     }
-    // }
+	private void showToast(final String message) {
+		cordova.getActivity().runOnUiThread(new Runnable() {
+			public void run() {
+				Toast.makeText(cordova.getActivity(), "Message: " + message, Toast.LENGTH_SHORT).show();
+			}
+		});
+    }
+    
+    /**
+ * Checks if the app has permission to write to device storage
+ *
+ * If the app does not has permission then the user will be prompted to grant permissions
+ *
+ * @param activity
+ */
+    private static void verifyStoragePermissions(Activity activity) {
+    // Check if we have write permission
+    int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
-		private void showToast(final String message) {
-			cordova.getActivity().runOnUiThread(new Runnable() {
-				public void run() {
-					Toast.makeText(cordova.getActivity(), "Message: " + message, Toast.LENGTH_SHORT)
-					.show();
-				}
-			});
-		}
+    if (permission != PackageManager.PERMISSION_GRANTED) {
+        // We don't have permission so prompt the user
+        ActivityCompat.requestPermissions(
+                activity,
+                PERMISSIONS_STORAGE,
+                REQUEST_EXTERNAL_STORAGE
+        );
+    }
+}
     
 }
