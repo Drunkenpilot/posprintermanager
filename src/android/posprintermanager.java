@@ -12,6 +12,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.betaresto.terminal.R;
+import android.app.Activity;
 import android.support.v4.app.ActivityCompat;
 import android.content.pm.PackageManager;
 import android.Manifest;
@@ -49,7 +50,7 @@ public class posprintermanager extends CordovaPlugin {
 
     private void buildImage(final JSONArray printContent, final int printTemplate, final JSONArray printCanvas) {
 
-        this.verifyStoragePermissions();
+        this.verifyStoragePermissions(cordova.getActivity());
 
         try{
 		ReceiptBuilderExt receiptBuilder = new ReceiptBuilderExt(cordova.getActivity(), printCanvas);
@@ -88,14 +89,14 @@ public class posprintermanager extends CordovaPlugin {
  *
  * @param activity
  */
-    private static void verifyStoragePermissions() { //Activity activity
+    private static void verifyStoragePermissions(Activity activity) { 
     // Check if we have write permission
-    int permission = ActivityCompat.checkSelfPermission(cordova.getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE);
+    int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
     if (permission != PackageManager.PERMISSION_GRANTED) {
         // We don't have permission so prompt the user
         ActivityCompat.requestPermissions(
-                cordova.getActivity(),
+                activity,
                 PERMISSIONS_STORAGE,
                 REQUEST_EXTERNAL_STORAGE
         );
