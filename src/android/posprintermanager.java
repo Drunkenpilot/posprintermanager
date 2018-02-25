@@ -33,6 +33,8 @@ public class posprintermanager extends CordovaPlugin {
         Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
 
+    private static final String applicationDirectory = "";
+
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 
@@ -60,7 +62,9 @@ public class posprintermanager extends CordovaPlugin {
 		ReceiptBuilderExt receiptBuilder = new ReceiptBuilderExt(cordova.getActivity(), printCanvas);
         Bitmap testImg = receiptBuilder.build(printContent);
         //save Bitmap to file
-        
+        String testPath = Environment.getFilesDir().toString();
+        Log.i("File Path", "File Path: "+ testPath);
+
         String path = Environment.getExternalStorageDirectory().toString();
         String filename = "test.jpg";    
         File file = new File(path, filename);
