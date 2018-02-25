@@ -62,7 +62,7 @@ public class posprintermanager extends CordovaPlugin {
 		ReceiptBuilderExt receiptBuilder = new ReceiptBuilderExt(cordova.getActivity(), printCanvas);
         Bitmap testImg = receiptBuilder.build(printContent);
         //save Bitmap to file
-        String testPath = Environment.getFilesDir().toString();
+        String testPath = cordova.getActivity().getExternalFilesDir();
         Log.i("File Path", "File Path: "+ testPath);
 
         String path = Environment.getExternalStorageDirectory().toString();
