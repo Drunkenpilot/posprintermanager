@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <usb-accessory model="DemoKit" manufacturer="Google" version="1.0"/>
+    <!-- <usb-accessory model="TM Printer" manufacturer="Epson" version="1.0"/> -->
+</resources>

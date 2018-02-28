@@ -51,15 +51,42 @@ public class posprintermanager extends CordovaPlugin {
             });
             return true;
         }
+
+        if(action.equals("search")) {
+            final int millSeconds = args.optInt(0, 10 * 1000);
+            final String vendor = args.optString(1);
+            final String type = args.optString(2);
+            cordova.getThreadPool().execute(new Runnable() {
+				public void run() {
+                    initSearchPrinter(timeout,vendor, type);
+                }
+            });
+            return true;
+        }
+
         return false;
     }
+
+    private void initSearchPrinter(final int millSeconds, final String vendor, final String type) {
+        if(vendor.equals("EPSON")) {    
+            EpsonPrinter epsonPrinter = new EpsonPrinter(cordova.getActivity(), callbackContext);
+            epsonPrinter.search(millSeconds);
+        } else if (vendor.equals("STAR")) {
+
+        } else {
+            this.callbackContext.error();
+        }
+
+
+    }
+
 
     private void buildImage(final JSONArray printContent, final int printTemplate, final JSONArray printCanvas) {
 
         this.verifyStoragePermissions(cordova.getActivity());
 
         try{
-		ReceiptBuilderExt receiptBuilder = new ReceiptBuilderExt(cordova.getActivity(), printCanvas);
+        ReceiptBuilderExt receiptBuilder = new ReceiptBuilderExt(cordova.getActivity(), printCanvas);
         Bitmap testImg = receiptBuilder.build(printContent);
         //save Bitmap to file
 

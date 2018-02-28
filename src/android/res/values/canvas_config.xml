@@ -1,0 +1,9 @@
+<resources>
+  <integer name="width">545</integer>
+  <integer name="marginTop">0</integer>
+  <integer name="marginRight">0</integer>
+  <integer name="marginBottom">0</integer>
+  <integer name="marginLeft">15</integer>
+  <string name="url">https://www.betalife.be</string>
+  <string name="website">www.betalife.be</string>
+</resources>
