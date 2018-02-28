@@ -57,7 +57,6 @@ public class posprintermanager extends CordovaPlugin {
             final String vendor = args.optString(1);
             final String type = args.optString(2);
             initSearchPrinter(millSeconds,vendor, type);
-            });
             return true;
         }
 
