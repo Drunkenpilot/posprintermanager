@@ -20,6 +20,7 @@ import com.epson.epos2.printer.PrinterStatusInfo;
 import com.epson.epos2.printer.ReceiveListener;
 import com.epson.epos2.Epos2CallbackCode;
 
+import android.app.Activity;
 import android.util.Log;
 import android.widget.Toast;
 import android.app.ProgressDialog;
@@ -29,6 +30,10 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+import org.apache.cordova.CallbackContext;
+import org.apache.cordova.CordovaInterface;
+import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.CordovaWebView;
 
 public class EpsonPrinter {
 
@@ -71,19 +76,43 @@ public class EpsonPrinter {
 			});
     }
 
-    protected void onPreExecute()
+
+    private ProgressDialog progressDialog;   // class variable
+
+	private void showProgressDialog(final String title, final String message)
 	{
-		showProgressDialog("Searching Printers","Please wait...");
+		this.activity.runOnUiThread(new Runnable() {
+			public void run() {
+				progressDialog = new ProgressDialog(this.activity);
+
+				progressDialog.setTitle(title); //title
+
+				progressDialog.setMessage(message); // message
+
+				progressDialog.setCancelable(false);
+
+				progressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						stopDiscovery();
+						dialog.dismiss();
+					}
+				});
+
+				progressDialog.show();
+			}
+		});
     }
     
-    protected void onPostExecute()
-	{
-		if(progressDialog != null && progressDialog.isShowing())
-		{
-			progressDialog.dismiss();
-		}
-    }
-    
+    	@Override
+	public void onDestroy() {
+		Log.i("停止搜索", "停止1");
+		super.onDestroy();
+
+		stopDiscovery();
+		mFilterOption = null;
+	}
+
     private void stopDiscovery() {
 		while (true) {
 			try {
@@ -113,6 +142,20 @@ public class EpsonPrinter {
 		callbackContext.success(jsonArray);
 		onPostExecute();
     }
+
+    protected void onPreExecute()
+	{
+		showProgressDialog("Searching Printers","Please wait...");
+    }
+    
+    protected void onPostExecute()
+	{
+		if(progressDialog != null && progressDialog.isShowing())
+		{
+			progressDialog.dismiss();
+		}
+    }
+    
     
     private DiscoveryListener mDiscoveryListener = new DiscoveryListener() {
 		@Override
