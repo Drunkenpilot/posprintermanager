@@ -56,10 +56,7 @@ public class posprintermanager extends CordovaPlugin {
             final int millSeconds = args.optInt(0, 10 * 1000);
             final String vendor = args.optString(1);
             final String type = args.optString(2);
-            cordova.getThreadPool().execute(new Runnable() {
-				public void run() {
-                    initSearchPrinter(millSeconds,vendor, type);
-                }
+            initSearchPrinter(millSeconds,vendor, type);
             });
             return true;
         }
@@ -70,7 +67,7 @@ public class posprintermanager extends CordovaPlugin {
     private void initSearchPrinter(final int millSeconds, final String vendor, final String type) {
         if(vendor.equals("EPSON")) {    
             EpsonPrinter epsonPrinter = new EpsonPrinter(cordova.getActivity(), callbackContext);
-            epsonPrinter.search(millSeconds);
+            epsonPrinter.search(millSeconds,cordova.getActivity());
         } else if (vendor.equals("STAR")) {
 
         } else {

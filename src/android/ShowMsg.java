@@ -7,7 +7,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-// import be.betalife.betarestoapp.R;
+import com.betaresto.terminal.R;
 
 public class ShowMsg {
 

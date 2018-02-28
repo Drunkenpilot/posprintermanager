@@ -50,8 +50,8 @@ public class EpsonPrinter {
         this.callbackContext = callbackContext;
     }
 
-    public void search(final int millSeconds) {
-        	this.activity.getThreadPool().execute(new Runnable() {
+    public void search(final int millSeconds, final Activity activity) {
+        	activity.getThreadPool().execute(new Runnable() {
 				public void run() {
 					mPrinterList = new ArrayList<HashMap<String, String>>();
 					mFilterOption = new FilterOption();
@@ -60,12 +60,12 @@ public class EpsonPrinter {
 					mFilterOption.setPortType(Discovery.PORTTYPE_ALL);
 					try {
 						onPreExecute();
-						Discovery.start(this.activity, mFilterOption, mDiscoveryListener);
+						Discovery.start(activity, mFilterOption, mDiscoveryListener);
 						Thread.sleep(millSeconds);
 					} catch (Epos2Exception e) {
 						Log.i("测试", "e:" + e.getErrorStatus());
 						onPostExecute();
-						ShowMsg.showException(e, "start", this.activity);
+						ShowMsg.showException(e, "start", activity);
 						//EpsonPrinter.this.callbackContext.error("e:" + e.getErrorStatus());
 					} catch (InterruptedException e) {
 						Log.i("测试", "InterruptedException: " + e.getMessage());
@@ -81,9 +81,9 @@ public class EpsonPrinter {
 
 	private void showProgressDialog(final String title, final String message)
 	{
-		this.activity.runOnUiThread(new Runnable() {
+		activity.runOnUiThread(new Runnable() {
 			public void run() {
-				progressDialog = new ProgressDialog(this.activity);
+				progressDialog = new ProgressDialog(activity);
 
 				progressDialog.setTitle(title); //title
 
@@ -179,11 +179,11 @@ public class EpsonPrinter {
 		}
 
 		public void showToast(final DeviceInfo deviceInfo) {
-			this.activity.runOnUiThread(new Runnable() {
+			activity.runOnUiThread(new Runnable() {
 				public void run() {
-					Toast.makeText(this.activity, "PrinterName: " + deviceInfo.getDeviceName(),
+					Toast.makeText(activity, "PrinterName: " + deviceInfo.getDeviceName(),
 					Toast.LENGTH_SHORT).show();
-					Toast.makeText(this.activity, "Target: " + deviceInfo.getTarget(), Toast.LENGTH_SHORT)
+					Toast.makeText(activity, "Target: " + deviceInfo.getTarget(), Toast.LENGTH_SHORT)
 					.show();
 				}
 			});
