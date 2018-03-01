@@ -109,32 +109,36 @@ public class posprintermanager extends CordovaPlugin {
     }
 
     private void initSearchPrinter(final int millSeconds, final String vendor, final String type) {
-        if(vendor.equals("EPSON")) {    
-            // EpsonPrinter epsonPrinter = new EpsonPrinter(cordova.getActivity(), callbackContext);
-            cordova.getThreadPool().execute(new Runnable() {
+        if(vendor.equals("EPSON")) {
+			cordova.getThreadPool().execute(new Runnable() {
 				public void run() {
-                    mPrinterList = new ArrayList<HashMap<String, String>>();
-					mFilterOption = new FilterOption();
-					mFilterOption.setDeviceType(Discovery.TYPE_PRINTER);
-					mFilterOption.setEpsonFilter(Discovery.FILTER_NAME);
-					mFilterOption.setPortType(Discovery.PORTTYPE_ALL);
-					try {
-						onPreExecute();
-						Discovery.start(cordova.getActivity(), mFilterOption, mDiscoveryListener);
-						Thread.sleep(millSeconds);
-					} catch (Epos2Exception e) {
-						Log.i("测试", "e:" + e.getErrorStatus());
-						onPostExecute();
-						ShowMsg.showException(e, "start", cordova.getActivity());
-						//EpsonPrinter.this.callbackContext.error("e:" + e.getErrorStatus());
-					} catch (InterruptedException e) {
-						Log.i("测试", "InterruptedException: " + e.getMessage());
-					} finally {
-						stopDiscovery();
-					}
-
-                }
-            });
+					EpsonPrinter epsonPrinter = new EpsonPrinter(cordova.getActivity(), this.callbackContext);
+				}
+			});
+//            cordova.getThreadPool().execute(new Runnable() {
+//				public void run() {
+//                    mPrinterList = new ArrayList<HashMap<String, String>>();
+//					mFilterOption = new FilterOption();
+//					mFilterOption.setDeviceType(Discovery.TYPE_PRINTER);
+//					mFilterOption.setEpsonFilter(Discovery.FILTER_NAME);
+//					mFilterOption.setPortType(Discovery.PORTTYPE_ALL);
+//					try {
+//						onPreExecute();
+//						Discovery.start(cordova.getActivity(), mFilterOption, mDiscoveryListener);
+//						Thread.sleep(millSeconds);
+//					} catch (Epos2Exception e) {
+//						Log.i("测试", "e:" + e.getErrorStatus());
+//						onPostExecute();
+//						ShowMsg.showException(e, "start", cordova.getActivity());
+//						//EpsonPrinter.this.callbackContext.error("e:" + e.getErrorStatus());
+//					} catch (InterruptedException e) {
+//						Log.i("测试", "InterruptedException: " + e.getMessage());
+//					} finally {
+//						stopDiscovery();
+//					}
+//
+//                }
+//            });
         } else if (vendor.equals("STAR")) {
 
         } else {
