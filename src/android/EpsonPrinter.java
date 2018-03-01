@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.ArrayList;
 
 import com.betaresto.terminal.R;
-import com.github.danielfelgar.drawreceiptlib.ReceiptBuilder;
 
 import com.epson.epos2.Epos2Exception;
 import com.epson.epos2.discovery.DeviceInfo;
@@ -36,7 +35,7 @@ import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CordovaWebView;
 
-public class EpsonPrinter implements ReceiveListener {
+public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 
 	private Activity activity;
 
@@ -191,28 +190,28 @@ public class EpsonPrinter implements ReceiveListener {
 			}
 
 			//			Generate main content
-			try{
-				method = "addTextAlign";
-				mPrinter.addTextAlign(Printer.ALIGN_CENTER);
-				ReceiptBuilderExt receiptBuilder = new ReceiptBuilderExt(this.activity);
-				Bitmap testImg = receiptBuilder.build(printContent);
-
-				method = "addImage";
-				mPrinter.addImage(testImg, 0, 0,
-				testImg.getWidth(),
-				testImg.getHeight(),
-				Printer.COLOR_1,
-				Printer.MODE_MONO,
-				Printer.HALFTONE_DITHER,
-				Printer.PARAM_DEFAULT,
-				Printer.COMPRESS_AUTO);
-
-				method = "addFeedLine";
-				mPrinter.addFeedLine(1);
-
-			} catch(JSONException e){
-
-			}
+//			try{
+//				method = "addTextAlign";
+//				mPrinter.addTextAlign(Printer.ALIGN_CENTER);
+//				ReceiptBuilderExt receiptBuilder = new ReceiptBuilderExt(this.activity);
+//				Bitmap testImg = receiptBuilder.build(printContent);
+//
+//				method = "addImage";
+//				mPrinter.addImage(testImg, 0, 0,
+//				testImg.getWidth(),
+//				testImg.getHeight(),
+//				Printer.COLOR_1,
+//				Printer.MODE_MONO,
+//				Printer.HALFTONE_DITHER,
+//				Printer.PARAM_DEFAULT,
+//				Printer.COMPRESS_AUTO);
+//
+//				method = "addFeedLine";
+//				mPrinter.addFeedLine(1);
+//
+//			} catch(JSONException e){
+//
+//			}
 			if(printTemplate == 1) {
 
 				method = "addTextAlign";

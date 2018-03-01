@@ -112,7 +112,7 @@ public class posprintermanager extends CordovaPlugin {
         if(vendor.equals("EPSON")) {
 			cordova.getThreadPool().execute(new Runnable() {
 				public void run() {
-					EpsonPrinter epsonPrinter = new EpsonPrinter(cordova.getActivity(), this.callbackContext);
+					EpsonPrinter epsonPrinter = new EpsonPrinter(cordova.getActivity(), callbackContext);
 				}
 			});
 //            cordova.getThreadPool().execute(new Runnable() {
