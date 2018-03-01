@@ -74,7 +74,7 @@ public class posprintermanager extends CordovaPlugin {
         } else if (vendor.equals("STAR")) {
 
         } else {
-            this.callbackContext.error();
+            this.callbackContext.error("no");
         }
 
 
