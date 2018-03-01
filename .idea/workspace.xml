@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ce24c247-5e6e-4eb0-ab32-4abb431236b3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/android/posprintermanager.java" afterPath="$PROJECT_DIR$/src/android/posprintermanager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugin.xml" afterPath="$PROJECT_DIR$/plugin.xml" />
     </list>
     <ignored path="posprintermanager.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,7 +29,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="posprintermanager.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="posprintermanager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/android/posprintermanager.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="540">
@@ -37,6 +37,16 @@
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="plugin.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/plugin.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="617">
+              <caret line="105" column="4" selection-start-line="105" selection-start-column="4" selection-end-line="105" selection-end-column="4" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -261,8 +271,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/plugin.xml" />
         <option value="$PROJECT_DIR$/src/android/posprintermanager.java" />
+        <option value="$PROJECT_DIR$/plugin.xml" />
       </list>
     </option>
   </component>
@@ -737,14 +747,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/plugin.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="692">
-          <caret line="109" column="38" selection-start-line="109" selection-start-column="22" selection-end-line="109" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/android/EpsonPrinter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -762,6 +764,14 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plugin.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="617">
+          <caret line="105" column="4" selection-start-line="105" selection-start-column="4" selection-end-line="105" selection-end-column="4" />
+          <folding />
         </state>
       </provider>
     </entry>

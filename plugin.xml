@@ -103,7 +103,7 @@
     
     <source-file src="src/android/posprintermanager.java" target-dir="src/cordova/plugin/posprintermanager" />
     <source-file src="src/android/ReceiptBuilderExt.java" target-dir="src/cordova/plugin/posprintermanager" />
-    <!-- <source-file src="src/android/EpsonPrinter.java" target-dir="src/cordova/plugin/posprintermanager/posprintermanager" /> -->
+    <source-file src="src/android/EpsonPrinter.java" target-dir="src/cordova/plugin/posprintermanager" />
     <source-file src="src/android/ShowMsg.java" target-dir="src/cordova/plugin/posprintermanager" />
     <source-file src="libs/ePOS2.jar" target-dir="libs" />
     <source-file src="libs/armeabi/libepos2.so" target-dir="libs/armeabi" />
