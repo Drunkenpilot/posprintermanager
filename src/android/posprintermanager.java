@@ -74,6 +74,7 @@ public class posprintermanager extends CordovaPlugin {
 
         if(action.equals("search")) {
             final int millSeconds = args.optInt(0, 10 * 1000);
+			Log.i("millSeconds", "time:" + millSeconds);
             final String vendor = args.optString(1);
             final String type = args.optString(2);
 
