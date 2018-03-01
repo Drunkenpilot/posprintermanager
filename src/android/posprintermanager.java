@@ -78,30 +78,30 @@ public class posprintermanager extends CordovaPlugin {
             final String vendor = args.optString(1);
             final String type = args.optString(2);
 
-//            initSearchPrinter(millSeconds,vendor, type);
-			cordova.getThreadPool().execute(new Runnable() {
-				public void run() {
-					mPrinterList = new ArrayList<HashMap<String, String>>();
-					mFilterOption = new FilterOption();
-					mFilterOption.setDeviceType(Discovery.TYPE_PRINTER);
-					mFilterOption.setEpsonFilter(Discovery.FILTER_NAME);
-					mFilterOption.setPortType(Discovery.PORTTYPE_ALL);
-					try {
-						onPreExecute();
-						Discovery.start(cordova.getActivity(), mFilterOption, mDiscoveryListener);
-						Thread.sleep(millSeconds);
-					} catch (Epos2Exception e) {
-						Log.i("测试", "e:" + e.getErrorStatus());
-						onPostExecute();
-						ShowMsg.showException(e, "start", cordova.getActivity());
-						//EpsonPrinter.this.callbackContext.error("e:" + e.getErrorStatus());
-					} catch (InterruptedException e) {
-						Log.i("测试", "InterruptedException: " + e.getMessage());
-					} finally {
-						stopDiscovery();
-					}
-				}
-			});
+            initSearchPrinter(millSeconds,vendor, type);
+//			cordova.getThreadPool().execute(new Runnable() {
+//				public void run() {
+//					mPrinterList = new ArrayList<HashMap<String, String>>();
+//					mFilterOption = new FilterOption();
+//					mFilterOption.setDeviceType(Discovery.TYPE_PRINTER);
+//					mFilterOption.setEpsonFilter(Discovery.FILTER_NAME);
+//					mFilterOption.setPortType(Discovery.PORTTYPE_ALL);
+//					try {
+//						onPreExecute();
+//						Discovery.start(cordova.getActivity(), mFilterOption, mDiscoveryListener);
+//						Thread.sleep(millSeconds);
+//					} catch (Epos2Exception e) {
+//						Log.i("测试", "e:" + e.getErrorStatus());
+//						onPostExecute();
+//						ShowMsg.showException(e, "start", cordova.getActivity());
+//						//EpsonPrinter.this.callbackContext.error("e:" + e.getErrorStatus());
+//					} catch (InterruptedException e) {
+//						Log.i("测试", "InterruptedException: " + e.getMessage());
+//					} finally {
+//						stopDiscovery();
+//					}
+//				}
+//			});
             return true;
         }
 
