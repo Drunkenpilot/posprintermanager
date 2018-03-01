@@ -75,6 +75,341 @@ public class EpsonPrinter implements ReceiveListener {
     }
 
 
+
+
+	private boolean runPrintReceiptSequence(final JSONArray printContent, final int printTemplate, final int printMode, final int printerSeries, final int lang, final String printTarget) {
+		if (!initializeObject(printerSeries, lang)) {
+			return false;
+		}
+
+		if (!createReceiptData(printContent,printTemplate,printMode)) {
+			finalizeObject();
+			return false;
+		}
+
+		if (!printData(printTarget)) {
+			finalizeObject();
+			return false;
+		}
+
+		return true;
+	}
+
+
+	private boolean initializeObject(final int printerSeries, final int lang) {
+		try {
+			mPrinter = new Printer(printerSeries,lang, this.activity);
+		}
+		catch (Exception e) {
+			EpsonPrinter.this.callbackContext.error("e:" + ((Epos2Exception) e).getErrorStatus());
+			ShowMsg.showException(e, "Printer", this.activity);
+			return false;
+		}
+
+		mPrinter.setReceiveEventListener(this);
+
+		return true;
+	}
+
+
+	private boolean printData(final String printTarget) {
+		if (mPrinter == null) {
+			return false;
+		}
+
+		if (!connectPrinter(printTarget)) {
+			return false;
+		}
+
+		PrinterStatusInfo status = mPrinter.getStatus();
+
+		// dispPrinterWarnings(status);
+
+		if (!isPrintable(status)) {
+			EpsonPrinter.this.callbackContext.error("e:" + makeErrorMessage(status));
+			ShowMsg.showMsg(makeErrorMessage(status), this.activity);
+			try {
+				mPrinter.disconnect();
+			}
+			catch (Exception ex) {
+				// Do nothing
+			}
+			return false;
+		}
+
+		try {
+			mPrinter.sendData(Printer.PARAM_DEFAULT);
+		}
+		catch (Exception e) {
+			ShowMsg.showException(e, "sendData", this.activity);
+			try {
+				mPrinter.disconnect();
+			}
+			catch (Exception ex) {
+				// Do nothing
+			}
+			return false;
+		}
+
+		return true;
+	}
+
+
+
+	private boolean createReceiptData(final JSONArray printContent,final int printTemplate, final int printMode) {
+		if (mPrinter == null) {
+			return false;
+		}
+		String method = "";
+		// 		Line mode
+		StringBuilder textData = new StringBuilder();
+
+		try {
+			//				printTemplate = 1 Receipt with logo
+			//				printTemplate = 2 Receipt for kitchen
+			//				printTemplate = 3 Online order
+			if(printTemplate == 1){
+				// Receipt with logo
+				method = "addTextAlign";
+				mPrinter.addTextAlign(Printer.ALIGN_CENTER);
+
+				Bitmap logoData = BitmapFactory.decodeResource(this.activity.getResources(), R.drawable.store);
+
+				method = "addImage";
+				mPrinter.addImage(logoData, 0, 0,
+				logoData.getWidth(),
+				logoData.getHeight(),
+				Printer.COLOR_1,
+				Printer.MODE_MONO,
+				Printer.HALFTONE_DITHER,
+				Printer.PARAM_DEFAULT,
+				Printer.COMPRESS_AUTO);
+
+				method = "addFeedLine";
+				mPrinter.addFeedLine(1);
+			}
+
+			//			Generate main content
+			try{
+				method = "addTextAlign";
+				mPrinter.addTextAlign(Printer.ALIGN_CENTER);
+				ReceiptBuilderExt receiptBuilder = new ReceiptBuilderExt(this.activity);
+				Bitmap testImg = receiptBuilder.build(printContent);
+
+				method = "addImage";
+				mPrinter.addImage(testImg, 0, 0,
+				testImg.getWidth(),
+				testImg.getHeight(),
+				Printer.COLOR_1,
+				Printer.MODE_MONO,
+				Printer.HALFTONE_DITHER,
+				Printer.PARAM_DEFAULT,
+				Printer.COMPRESS_AUTO);
+
+				method = "addFeedLine";
+				mPrinter.addFeedLine(1);
+
+			} catch(JSONException e){
+
+			}
+			if(printTemplate == 1) {
+
+				method = "addTextAlign";
+				mPrinter.addTextAlign(Printer.ALIGN_CENTER);
+				//			QR code
+				method = "addSymbol";
+				mPrinter.addSymbol(this.activity.getResources().getString(R.string.url), Printer.SYMBOL_QRCODE_MODEL_2, Printer.LEVEL_L, 3, 3, 3);
+
+				method = "addText";
+				mPrinter.addText(this.activity.getResources().getString(R.string.website));
+
+				method = "addFeedLine";
+				mPrinter.addFeedLine(1);
+				//			code bar
+				//		  final int barcodeWidth = 2;
+				//		  final int barcodeHeight = 100;
+				//			method = "addBarcode";
+				//			mPrinter.addBarcode("01209457",
+				//			Printer.BARCODE_CODE39,
+				//			Printer.HRI_BELOW,
+				//			Printer.FONT_A,
+				//			barcodeWidth,
+				//			barcodeHeight);
+			}
+			method = "addCut";
+			mPrinter.addCut(Printer.CUT_FEED);
+
+			// printMode = 1 normal mode;
+			// printMode = 2 silent mode;
+			if(printMode == 1){
+				method = "addPulse";
+				mPrinter.addPulse(Printer.DRAWER_2PIN,Printer.PULSE_500);
+				method = "addPulse";
+				mPrinter.addPulse(Printer.DRAWER_2PIN,Printer.PULSE_500);
+			}
+
+		}
+		catch (Exception e) {
+			ShowMsg.showException(e, method, this.activity);
+			return false;
+		}
+
+		textData = null;
+
+		return true;
+	}
+
+
+	private void finalizeObject() {
+		if (mPrinter == null) {
+			return;
+		}
+
+		mPrinter.clearCommandBuffer();
+
+		mPrinter.setReceiveEventListener(null);
+
+		mPrinter = null;
+	}
+
+	private boolean connectPrinter(final String printTarget) {
+		boolean isBeginTransaction = false;
+
+		if (mPrinter == null) {
+			return false;
+		}
+
+		try {
+			mPrinter.connect(printTarget, Printer.PARAM_DEFAULT);
+		}
+		catch (Exception e) {
+			EpsonPrinter.this.callbackContext.error("e:" + ((Epos2Exception) e).getErrorStatus());
+			ShowMsg.showException(e, "connect", this.activity);
+			return false;
+		}
+
+		try {
+			mPrinter.beginTransaction();
+			isBeginTransaction = true;
+		}
+		catch (Exception e) {
+			EpsonPrinter.this.callbackContext.error("e:" + ((Epos2Exception) e).getErrorStatus());
+			ShowMsg.showException(e, "beginTransaction", this.activity);
+		}
+
+		if (isBeginTransaction == false) {
+			try {
+				mPrinter.disconnect();
+			}
+			catch (Epos2Exception e) {
+				// Do nothing
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	private void disconnectPrinter() {
+		if (mPrinter == null) {
+			return;
+		}
+
+		try {
+			mPrinter.endTransaction();
+		}
+		catch (final Exception e) {
+			cordova.getActivity().runOnUiThread(new Runnable() {
+				@Override
+				public synchronized void run() {
+					ShowMsg.showException(e, "endTransaction", this.activity);
+				}
+			});
+		}
+
+		try {
+			// Log.i("停止打印","停止打印1");
+			mPrinter.disconnect();
+			// Log.i("停止打印","停止打印2");
+		}
+		catch (final Exception e) {
+			cordova.getActivity().runOnUiThread(new Runnable() {
+				@Override
+				public synchronized void run() {
+					ShowMsg.showException(e, "disconnect", this.activity);
+				}
+			});
+		}
+
+		finalizeObject();
+	}
+
+	private boolean isPrintable(PrinterStatusInfo status) {
+		if (status == null) {
+			return false;
+		}
+
+		if (status.getConnection() == Printer.FALSE) {
+			return false;
+		}
+		else if (status.getOnline() == Printer.FALSE) {
+			return false;
+		}
+		else {
+			;//print available
+		}
+
+		return true;
+	}
+
+	private String makeErrorMessage(PrinterStatusInfo status) {
+		String msg = "";
+		if (status.getOnline() == Printer.FALSE) {
+			msg += cordova.getActivity().getString(R.string.handlingmsg_err_offline);
+		}
+		if (status.getConnection() == Printer.FALSE) {
+			msg += cordova.getActivity().getString(R.string.handlingmsg_err_no_response);
+		}
+		if (status.getCoverOpen() == Printer.TRUE) {
+			msg += cordova.getActivity().getString(R.string.handlingmsg_err_cover_open);
+		}
+		if (status.getPaper() == Printer.PAPER_EMPTY) {
+			msg += cordova.getActivity().getString(R.string.handlingmsg_err_receipt_end);
+		}
+		if (status.getPaperFeed() == Printer.TRUE || status.getPanelSwitch() == Printer.SWITCH_ON) {
+			msg += cordova.getActivity().getString(R.string.handlingmsg_err_paper_feed);
+		}
+		if (status.getErrorStatus() == Printer.MECHANICAL_ERR || status.getErrorStatus() == Printer.AUTOCUTTER_ERR) {
+			msg += cordova.getActivity().getString(R.string.handlingmsg_err_autocutter);
+			msg += cordova.getActivity().getString(R.string.handlingmsg_err_need_recover);
+		}
+		if (status.getErrorStatus() == Printer.UNRECOVER_ERR) {
+			msg += cordova.getActivity().getString(R.string.handlingmsg_err_unrecover);
+		}
+		if (status.getErrorStatus() == Printer.AUTORECOVER_ERR) {
+			if (status.getAutoRecoverError() == Printer.HEAD_OVERHEAT) {
+				msg += cordova.getActivity().getString(R.string.handlingmsg_err_overheat);
+				msg += cordova.getActivity().getString(R.string.handlingmsg_err_head);
+			}
+			if (status.getAutoRecoverError() == Printer.MOTOR_OVERHEAT) {
+				msg += cordova.getActivity().getString(R.string.handlingmsg_err_overheat);
+				msg += cordova.getActivity().getString(R.string.handlingmsg_err_motor);
+			}
+			if (status.getAutoRecoverError() == Printer.BATTERY_OVERHEAT) {
+				msg += cordova.getActivity().getString(R.string.handlingmsg_err_overheat);
+				msg += cordova.getActivity().getString(R.string.handlingmsg_err_battery);
+			}
+			if (status.getAutoRecoverError() == Printer.WRONG_PAPER) {
+				msg += cordova.getActivity().getString(R.string.handlingmsg_err_wrong_paper);
+			}
+		}
+		if (status.getBatteryLevel() == Printer.BATTERY_LEVEL_0) {
+			msg += cordova.getActivity().getString(R.string.handlingmsg_err_battery_real_end);
+		}
+
+		return msg;
+	}
+
     private ProgressDialog progressDialog;   // class variable
 
 	private void showProgressDialog(final String title, final String message)
@@ -100,7 +435,26 @@ public class EpsonPrinter implements ReceiveListener {
 				progressDialog.show();
 			}
 		});
-    }
+	}
+	
+	public void onPtrReceive(final Printer printerObj, final int code, final PrinterStatusInfo status, final String printJobId) {
+		this.activity.runOnUiThread(new Runnable() {
+			@Override
+			public synchronized void run() {
+				EpsonPrinter.this.callbackContext.success();
+				ShowMsg.showResult(code, makeErrorMessage(status), this.activity);
+
+				// dispPrinterWarnings(status);
+
+				new Thread(new Runnable() {
+					@Override
+					public void run() {
+						disconnectPrinter();
+					}
+				}).start();
+			}
+		});
+	}
     
     @Override
 	public void onDestroy() {
