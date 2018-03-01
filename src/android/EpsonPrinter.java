@@ -102,7 +102,7 @@ public class EpsonPrinter {
 		});
     }
     
-    	// @Override
+    @Override
 	public void onDestroy() {
 		Log.i("停止搜索", "停止1");
 		super.onDestroy();
