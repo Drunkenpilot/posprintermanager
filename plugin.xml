@@ -94,18 +94,19 @@
         <string name="handlingmsg_err_offline">Printer is offline.\n</string>
     </config-file>
           
-    <source-file src="libs/ePOS2.jar" target-dir="libs" />
-    <source-file src="libs/armeabi/libepos2.so" target-dir="libs/armeabi" />
+
     <source-file src="src/android/res/values/canvas_config.xml" target-dir="res/values/" />
     <source-file src="src/android/res/xml/device_filter.xml" target-dir="res/xml/" />
     <source-file src="src/android/res/xml/accessory_filter.xml" target-dir="res/xml/" />
+    
 
     
     <source-file src="src/android/posprintermanager.java" target-dir="src/cordova/plugin/posprintermanager/posprintermanager" />
     <source-file src="src/android/ReceiptBuilderExt.java" target-dir="src/cordova/plugin/posprintermanager/posprintermanager" />
     <!-- <source-file src="src/android/EpsonPrinter.java" target-dir="src/cordova/plugin/posprintermanager/posprintermanager" /> -->
     <source-file src="src/android/ShowMsg.java" target-dir="src/cordova/plugin/posprintermanager/posprintermanager" />
-
+<source-file src="libs/ePOS2.jar" target-dir="libs" />
+<source-file src="libs/armeabi/libepos2.so" target-dir="libs/armeabi" />
     <source-file src="src/android/drawreceiptlib/DrawBlankSpace.java" target-dir="src/android/drawreceiptlib"/>
     <source-file src="src/android/drawreceiptlib/DrawImage.java" target-dir="src/android/drawreceiptlib"/>
     <source-file src="src/android/drawreceiptlib/DrawLine.java" target-dir="src/android/drawreceiptlib"/>
