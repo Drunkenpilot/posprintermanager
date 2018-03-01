@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/posprintermanager.iml" filepath="$PROJECT_DIR$/.idea/posprintermanager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/posprintermanager.iml" filepath="$PROJECT_DIR$/.idea/modules/posprintermanager.iml" />
     </modules>
   </component>
 </project>
