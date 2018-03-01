@@ -35,7 +35,7 @@ import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CordovaWebView;
 
-public class EpsonPrinter {
+public class EpsonPrinter implements ReceiveListener {
 
 	private Activity activity;
 
