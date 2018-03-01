@@ -102,14 +102,14 @@ public class EpsonPrinter {
 		});
     }
     
-    @Override
-	public void onDestroy() {
-		Log.i("停止搜索", "停止1");
-		super.onDestroy();
+    // @Override
+	// public void onDestroy() {
+	// 	Log.i("停止搜索", "停止1");
+	// 	super.onDestroy();
 
-		stopDiscovery();
-		mFilterOption = null;
-	}
+	// 	stopDiscovery();
+	// 	mFilterOption = null;
+	// }
 
     private void stopDiscovery() {
 		while (true) {
