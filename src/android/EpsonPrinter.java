@@ -50,9 +50,8 @@ public class EpsonPrinter {
         this.callbackContext = callbackContext;
     }
 
-    public void search(final int millSeconds, final Activity activity) {
-        	activity.getThreadPool().execute(new Runnable() {
-				public void run() {
+    public void search(final int millSeconds, Activity activity) {
+
 					mPrinterList = new ArrayList<HashMap<String, String>>();
 					mFilterOption = new FilterOption();
 					mFilterOption.setDeviceType(Discovery.TYPE_PRINTER);
@@ -72,8 +71,7 @@ public class EpsonPrinter {
 					} finally {
 						stopDiscovery();
 					}
-				}
-			});
+
     }
 
 
@@ -104,7 +102,7 @@ public class EpsonPrinter {
 		});
     }
     
-    	@Override
+    	// @Override
 	public void onDestroy() {
 		Log.i("停止搜索", "停止1");
 		super.onDestroy();
