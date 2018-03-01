@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.ArrayList;
 
 import com.betaresto.terminal.R;
+import com.github.danielfelgar.drawreceiptlib.ReceiptBuilder;
 
 import com.epson.epos2.Epos2Exception;
 import com.epson.epos2.discovery.DeviceInfo;
@@ -319,10 +320,10 @@ public class EpsonPrinter implements ReceiveListener {
 			mPrinter.endTransaction();
 		}
 		catch (final Exception e) {
-			cordova.getActivity().runOnUiThread(new Runnable() {
+			activity.runOnUiThread(new Runnable() {
 				@Override
 				public synchronized void run() {
-					ShowMsg.showException(e, "endTransaction", this.activity);
+					ShowMsg.showException(e, "endTransaction", activity);
 				}
 			});
 		}
@@ -333,10 +334,10 @@ public class EpsonPrinter implements ReceiveListener {
 			// Log.i("停止打印","停止打印2");
 		}
 		catch (final Exception e) {
-			cordova.getActivity().runOnUiThread(new Runnable() {
+			activity.runOnUiThread(new Runnable() {
 				@Override
 				public synchronized void run() {
-					ShowMsg.showException(e, "disconnect", this.activity);
+					ShowMsg.showException(e, "disconnect", activity);
 				}
 			});
 		}
@@ -365,46 +366,46 @@ public class EpsonPrinter implements ReceiveListener {
 	private String makeErrorMessage(PrinterStatusInfo status) {
 		String msg = "";
 		if (status.getOnline() == Printer.FALSE) {
-			msg += cordova.getActivity().getString(R.string.handlingmsg_err_offline);
+			msg += activity.getString(R.string.handlingmsg_err_offline);
 		}
 		if (status.getConnection() == Printer.FALSE) {
-			msg += cordova.getActivity().getString(R.string.handlingmsg_err_no_response);
+			msg += activity.getString(R.string.handlingmsg_err_no_response);
 		}
 		if (status.getCoverOpen() == Printer.TRUE) {
-			msg += cordova.getActivity().getString(R.string.handlingmsg_err_cover_open);
+			msg += activity.getString(R.string.handlingmsg_err_cover_open);
 		}
 		if (status.getPaper() == Printer.PAPER_EMPTY) {
-			msg += cordova.getActivity().getString(R.string.handlingmsg_err_receipt_end);
+			msg += activity.getString(R.string.handlingmsg_err_receipt_end);
 		}
 		if (status.getPaperFeed() == Printer.TRUE || status.getPanelSwitch() == Printer.SWITCH_ON) {
-			msg += cordova.getActivity().getString(R.string.handlingmsg_err_paper_feed);
+			msg += activity.getString(R.string.handlingmsg_err_paper_feed);
 		}
 		if (status.getErrorStatus() == Printer.MECHANICAL_ERR || status.getErrorStatus() == Printer.AUTOCUTTER_ERR) {
-			msg += cordova.getActivity().getString(R.string.handlingmsg_err_autocutter);
-			msg += cordova.getActivity().getString(R.string.handlingmsg_err_need_recover);
+			msg += activity.getString(R.string.handlingmsg_err_autocutter);
+			msg += activity.getString(R.string.handlingmsg_err_need_recover);
 		}
 		if (status.getErrorStatus() == Printer.UNRECOVER_ERR) {
-			msg += cordova.getActivity().getString(R.string.handlingmsg_err_unrecover);
+			msg += activity.getString(R.string.handlingmsg_err_unrecover);
 		}
 		if (status.getErrorStatus() == Printer.AUTORECOVER_ERR) {
 			if (status.getAutoRecoverError() == Printer.HEAD_OVERHEAT) {
-				msg += cordova.getActivity().getString(R.string.handlingmsg_err_overheat);
-				msg += cordova.getActivity().getString(R.string.handlingmsg_err_head);
+				msg += activity.getString(R.string.handlingmsg_err_overheat);
+				msg += activity.getString(R.string.handlingmsg_err_head);
 			}
 			if (status.getAutoRecoverError() == Printer.MOTOR_OVERHEAT) {
-				msg += cordova.getActivity().getString(R.string.handlingmsg_err_overheat);
-				msg += cordova.getActivity().getString(R.string.handlingmsg_err_motor);
+				msg += activity.getString(R.string.handlingmsg_err_overheat);
+				msg += activity.getString(R.string.handlingmsg_err_motor);
 			}
 			if (status.getAutoRecoverError() == Printer.BATTERY_OVERHEAT) {
-				msg += cordova.getActivity().getString(R.string.handlingmsg_err_overheat);
-				msg += cordova.getActivity().getString(R.string.handlingmsg_err_battery);
+				msg += activity.getString(R.string.handlingmsg_err_overheat);
+				msg += activity.getString(R.string.handlingmsg_err_battery);
 			}
 			if (status.getAutoRecoverError() == Printer.WRONG_PAPER) {
-				msg += cordova.getActivity().getString(R.string.handlingmsg_err_wrong_paper);
+				msg += activity.getString(R.string.handlingmsg_err_wrong_paper);
 			}
 		}
 		if (status.getBatteryLevel() == Printer.BATTERY_LEVEL_0) {
-			msg += cordova.getActivity().getString(R.string.handlingmsg_err_battery_real_end);
+			msg += activity.getString(R.string.handlingmsg_err_battery_real_end);
 		}
 
 		return msg;
@@ -438,11 +439,11 @@ public class EpsonPrinter implements ReceiveListener {
 	}
 	
 	public void onPtrReceive(final Printer printerObj, final int code, final PrinterStatusInfo status, final String printJobId) {
-		this.activity.runOnUiThread(new Runnable() {
+		activity.runOnUiThread(new Runnable() {
 			@Override
 			public synchronized void run() {
 				EpsonPrinter.this.callbackContext.success();
-				ShowMsg.showResult(code, makeErrorMessage(status), this.activity);
+				ShowMsg.showResult(code, makeErrorMessage(status), activity);
 
 				// dispPrinterWarnings(status);
 
