@@ -27,6 +27,8 @@ import com.epson.epos2.Epos2CallbackCode;
 
 import com.betaresto.terminal.R;
 import android.app.Activity;
+import android.content.DialogInterface;
+import android.app.ProgressDialog;
 import android.support.v4.app.ActivityCompat;
 import android.content.pm.PackageManager;
 import android.Manifest;
@@ -95,12 +97,12 @@ public class posprintermanager extends CordovaPlugin {
 					mFilterOption.setPortType(Discovery.PORTTYPE_ALL);
 					try {
 						onPreExecute();
-						Discovery.start(activity, mFilterOption, mDiscoveryListener);
+						Discovery.start(cordova.getActivity(), mFilterOption, mDiscoveryListener);
 						Thread.sleep(millSeconds);
 					} catch (Epos2Exception e) {
 						Log.i("测试", "e:" + e.getErrorStatus());
 						onPostExecute();
-						ShowMsg.showException(e, "start", cordorva.getActivity());
+						ShowMsg.showException(e, "start", cordova.getActivity());
 						//EpsonPrinter.this.callbackContext.error("e:" + e.getErrorStatus());
 					} catch (InterruptedException e) {
 						Log.i("测试", "InterruptedException: " + e.getMessage());
