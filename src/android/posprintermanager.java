@@ -38,11 +38,6 @@ import android.util.Log;
  * This class echoes a string called from JavaScript.
  */
 public class posprintermanager extends CordovaPlugin {
-    // declarations
-    private ArrayList<HashMap<String, String>> mPrinterList = null;
-	private FilterOption mFilterOption = null;
-	private CallbackContext callbackContext = null;
-	private Printer  mPrinter = null;
 
     // Storage Permissions
     private static final int REQUEST_EXTERNAL_STORAGE = 1;

@@ -453,7 +453,9 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			@Override
 			public synchronized void run() {
 				EpsonPrinter.this.callbackContext.success();
-				ShowMsg.showResult(code, makeErrorMessage(status), activity);
+				Toast.makeText(cordova.getActivity(), "Result: " + getCodeText(code), Toast.LENGTH_SHORT)
+						.show();
+				//				ShowMsg.showResult(code, makeErrorMessage(status), activity);
 
 				// dispPrinterWarnings(status);
 
@@ -465,6 +467,64 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 				}).start();
 			}
 		});
+	}
+
+	private static String getCodeText(int state) {
+		String return_text = "";
+		switch (state) {
+			case Epos2CallbackCode.CODE_SUCCESS:
+				return_text = "PRINT_SUCCESS";
+				break;
+			case Epos2CallbackCode.CODE_PRINTING:
+				return_text = "PRINTING";
+				break;
+			case Epos2CallbackCode.CODE_ERR_AUTORECOVER:
+				return_text = "ERR_AUTORECOVER";
+				break;
+			case Epos2CallbackCode.CODE_ERR_COVER_OPEN:
+				return_text = "ERR_COVER_OPEN";
+				break;
+			case Epos2CallbackCode.CODE_ERR_CUTTER:
+				return_text = "ERR_CUTTER";
+				break;
+			case Epos2CallbackCode.CODE_ERR_MECHANICAL:
+				return_text = "ERR_MECHANICAL";
+				break;
+			case Epos2CallbackCode.CODE_ERR_EMPTY:
+				return_text = "ERR_EMPTY";
+				break;
+			case Epos2CallbackCode.CODE_ERR_UNRECOVERABLE:
+				return_text = "ERR_UNRECOVERABLE";
+				break;
+			case Epos2CallbackCode.CODE_ERR_FAILURE:
+				return_text = "ERR_FAILURE";
+				break;
+			case Epos2CallbackCode.CODE_ERR_NOT_FOUND:
+				return_text = "ERR_NOT_FOUND";
+				break;
+			case Epos2CallbackCode.CODE_ERR_SYSTEM:
+				return_text = "ERR_SYSTEM";
+				break;
+			case Epos2CallbackCode.CODE_ERR_PORT:
+				return_text = "ERR_PORT";
+				break;
+			case Epos2CallbackCode.CODE_ERR_TIMEOUT:
+				return_text = "ERR_TIMEOUT";
+				break;
+			case Epos2CallbackCode.CODE_ERR_JOB_NOT_FOUND:
+				return_text = "ERR_JOB_NOT_FOUND";
+				break;
+			case Epos2CallbackCode.CODE_ERR_SPOOLER:
+				return_text = "ERR_SPOOLER";
+				break;
+			case Epos2CallbackCode.CODE_ERR_BATTERY_LOW:
+				return_text = "ERR_BATTERY_LOW";
+				break;
+			default:
+				return_text = String.format("%d", state);
+				break;
+		}
+		return return_text;
 	}
     
     @Override
