@@ -452,9 +452,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 		activity.runOnUiThread(new Runnable() {
 			@Override
 			public synchronized void run() {
-				callbackContext.success();
-				Toast.makeText(activity, "Result: " + getCodeText(code), Toast.LENGTH_SHORT)
-						.show();
+
 				//				ShowMsg.showResult(code, makeErrorMessage(status), activity);
 
 				// dispPrinterWarnings(status);
@@ -463,10 +461,11 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 					@Override
 					public void run() {
 						disconnectPrinter();
-//						Toast.makeText(activity, "Disconnected ", Toast.LENGTH_SHORT)
-//								.show();
 					}
 				}).start();
+				callbackContext.success();
+				Toast.makeText(activity, "Result: " + getCodeText(code), Toast.LENGTH_SHORT)
+						.show();
 			}
 		});
 	}
