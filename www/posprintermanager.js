@@ -19,3 +19,17 @@ exports.search = function(args, success, error) {
         timeout, vendor, type
     ]);
 };
+
+exports.print = function(args, success, error) {
+    args = JSON.parse(args);
+    vendor = args.vendor;
+    printData = args.printData;
+    printCanvas = args.printCanvas;
+    pulse = args.pulse;
+    model = args.model;
+    lang = args.lang;
+    address = args.address;
+    exec(success, error, "posprintermanager", "print", [
+        vendor, [printData], printCanvas, pulse, model, lang, address
+    ]);
+}

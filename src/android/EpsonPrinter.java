@@ -74,15 +74,24 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 
     }
 
+    public void print(final Bitmap printRaw, final JSONArray addPulse, final int printerSeries, final int lang, final String printTarget , Activity activity) {
+					//			printRaw Bitmap create by ReceiptBuilderExt
+					//			addPulse cash drawer  [ (0 no , 1 yes), (0-1  2pin, 5pin) , (time 0-4  100ms-500ms) ]
+					//          addSound  Buzzer //TODO
+					//			printerSeries  example { "model": "TM-T20, TM-T20II, TM-T20II-i", "value": "6" }
+					//			lang ANK model 0, Simplified Chinese model 1, etc
+					//          printTarget USB:/dev/////  BT: // TCP:192.168.1.101
+				runPrintReceiptSequence(printRaw, addPulse, printerSeries, lang, printTarget);
+	}
 
 
 
-	private boolean runPrintReceiptSequence(final JSONArray printContent, final int printTemplate, final int printMode, final int printerSeries, final int lang, final String printTarget) {
+	private boolean runPrintReceiptSequence(final Bitmap printRaw, final JSONArray addPulse, final int printerSeries, final int lang, final String printTarget) {
 		if (!initializeObject(printerSeries, lang)) {
 			return false;
 		}
 
-		if (!createReceiptData(printContent,printTemplate,printMode)) {
+		if (!createReceiptData(printRaw, addPulse)) {
 			finalizeObject();
 			return false;
 		}
@@ -156,7 +165,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 
 
 
-	private boolean createReceiptData(final JSONArray printContent,final int printTemplate, final int printMode) {
+	private boolean createReceiptData(final Bitmap printRaw, final JSONArray addPulse) {
 		if (mPrinter == null) {
 			return false;
 		}
@@ -165,87 +174,89 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 		StringBuilder textData = new StringBuilder();
 
 		try {
-			//				printTemplate = 1 Receipt with logo
-			//				printTemplate = 2 Receipt for kitchen
-			//				printTemplate = 3 Online order
-			if(printTemplate == 1){
-				// Receipt with logo
+
+			//			Generate main content
+
 				method = "addTextAlign";
 				mPrinter.addTextAlign(Printer.ALIGN_CENTER);
 
-				Bitmap logoData = BitmapFactory.decodeResource(this.activity.getResources(), R.drawable.store);
-
 				method = "addImage";
-				mPrinter.addImage(logoData, 0, 0,
-				logoData.getWidth(),
-				logoData.getHeight(),
-				Printer.COLOR_1,
-				Printer.MODE_MONO,
-				Printer.HALFTONE_DITHER,
-				Printer.PARAM_DEFAULT,
-				Printer.COMPRESS_AUTO);
+				mPrinter.addImage(
+						printRaw, 0, 0,
+						printRaw.getWidth(),
+						printRaw.getHeight(),
+						Printer.COLOR_1,
+						Printer.MODE_MONO,
+						Printer.HALFTONE_DITHER,
+						Printer.PARAM_DEFAULT,
+						Printer.COMPRESS_AUTO
+				);
 
 				method = "addFeedLine";
 				mPrinter.addFeedLine(1);
-			}
 
-			//			Generate main content
-//			try{
+//  TODO add QR Code
 //				method = "addTextAlign";
 //				mPrinter.addTextAlign(Printer.ALIGN_CENTER);
-//				ReceiptBuilderExt receiptBuilder = new ReceiptBuilderExt(this.activity);
-//				Bitmap testImg = receiptBuilder.build(printContent);
+//				//			QR code
+//				method = "addSymbol";
+//				mPrinter.addSymbol(this.activity.getResources().getString(R.string.url), Printer.SYMBOL_QRCODE_MODEL_2, Printer.LEVEL_L, 3, 3, 3);
 //
-//				method = "addImage";
-//				mPrinter.addImage(testImg, 0, 0,
-//				testImg.getWidth(),
-//				testImg.getHeight(),
-//				Printer.COLOR_1,
-//				Printer.MODE_MONO,
-//				Printer.HALFTONE_DITHER,
-//				Printer.PARAM_DEFAULT,
-//				Printer.COMPRESS_AUTO);
+//				method = "addText";
+//				mPrinter.addText(this.activity.getResources().getString(R.string.website));
 //
 //				method = "addFeedLine";
 //				mPrinter.addFeedLine(1);
-//
-//			} catch(JSONException e){
-//
-//			}
-			if(printTemplate == 1) {
+//				//			code bar
+//				//		  final int barcodeWidth = 2;
+//				//		  final int barcodeHeight = 100;
+//				//			method = "addBarcode";
+//				//			mPrinter.addBarcode("01209457",
+//				//			Printer.BARCODE_CODE39,
+//				//			Printer.HRI_BELOW,
+//				//			Printer.FONT_A,
+//				//			barcodeWidth,
+//				//			barcodeHeight);
 
-				method = "addTextAlign";
-				mPrinter.addTextAlign(Printer.ALIGN_CENTER);
-				//			QR code
-				method = "addSymbol";
-				mPrinter.addSymbol(this.activity.getResources().getString(R.string.url), Printer.SYMBOL_QRCODE_MODEL_2, Printer.LEVEL_L, 3, 3, 3);
 
-				method = "addText";
-				mPrinter.addText(this.activity.getResources().getString(R.string.website));
 
-				method = "addFeedLine";
-				mPrinter.addFeedLine(1);
-				//			code bar
-				//		  final int barcodeWidth = 2;
-				//		  final int barcodeHeight = 100;
-				//			method = "addBarcode";
-				//			mPrinter.addBarcode("01209457",
-				//			Printer.BARCODE_CODE39,
-				//			Printer.HRI_BELOW,
-				//			Printer.FONT_A,
-				//			barcodeWidth,
-				//			barcodeHeight);
-			}
 			method = "addCut";
 			mPrinter.addCut(Printer.CUT_FEED);
 
-			// printMode = 1 normal mode;
-			// printMode = 2 silent mode;
-			if(printMode == 1){
+			final int pulse = addPulse.optInt(0);
+
+			if(pulse == 1){
+
+				final int drawer = addPulse.optInt(1);
+				final int drawerPin;
+				final int signal = addPulse.optInt(2);
+				final int signalTime;
+				switch (drawer) {
+					case 0:  drawerPin = Printer.DRAWER_2PIN;
+						break;
+					case 1:  drawerPin = Printer.DRAWER_5PIN;
+						break;
+					default: drawerPin = Printer.PARAM_DEFAULT;
+						break;
+				}
+
+				switch (signal) {
+					case 0:  signalTime = Printer.PULSE_100;
+						break;
+					case 1:  signalTime = Printer.PULSE_200;
+						break;
+					case 2:  signalTime = Printer.PULSE_300;
+						break;
+					case 3:  signalTime = Printer.PULSE_400;
+						break;
+					case 4:  signalTime = Printer.PULSE_500;
+						break;
+					default: signalTime = Printer.PARAM_DEFAULT;
+						break;
+				}
+
 				method = "addPulse";
-				mPrinter.addPulse(Printer.DRAWER_2PIN,Printer.PULSE_500);
-				method = "addPulse";
-				mPrinter.addPulse(Printer.DRAWER_2PIN,Printer.PULSE_500);
+				mPrinter.addPulse(drawerPin, signalTime);
 			}
 
 		}

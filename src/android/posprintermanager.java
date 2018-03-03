@@ -81,6 +81,17 @@ public class posprintermanager extends CordovaPlugin {
             return true;
         }
 
+        if(action.equals("print")) {
+            final String vendor = args.optString(0);
+            final JSONArray printData = args.optJSAONArray(1);
+            final JSONArray printCanvas = args.optJSAONArray(2);
+            final JSONArray pulse = args.optJSAONArray(3);
+            final Int model = args.optInt(4);
+            final Int lang = args.optInt(5);
+            final String address = args.optString(6);
+            initPrint(vendor, printData, printCanvas, pulse, model, lang, address);
+        }
+
         return false;
     }
 
@@ -99,6 +110,35 @@ public class posprintermanager extends CordovaPlugin {
         }
 
 
+    }
+
+    private void initPrint(final String vendor,  final JSONArray printData, final JSONArray printCanvas, final JSONArray pulse, final Int model, final Int lang, final String address) {
+        if(vendor.equals("EPSON")) {
+
+            cordova.getThreadPool().execute(new Runnable() {
+                public void run() {
+                    Bitmap printRaw = buildPrintRaw(printData, printCanvas);
+                    EpsonPrinter epsonPrinter = new EpsonPrinter(cordova.getActivity(), callbackContext);
+                    epsonPrinter.print(printRaw, cordova.getActivity());
+                }
+            });
+        } else if (vendor.equals("STAR")) {
+
+        } else {
+            this.callbackContext.error("no");
+        }
+    }
+
+    private Bitmap buildPrintRaw (final JSONArray printContent, final JSONArray printCanvas) {
+        try {
+            ReceiptBuilderExt receiptBuilder = new ReceiptBuilderExt(cordova.getActivity(), printCanvas);
+            Bitmap printRaw = receiptBuilder.build(printContent);
+            return printRaw;
+        } catch (Exception e) {
+            Log.e("TestError: ", Log.getStackTraceString(e));
+            this.callbackContext.error(Log.getStackTraceString(e));
+            this.showToast("Image build failed");
+        }
     }
 
 
