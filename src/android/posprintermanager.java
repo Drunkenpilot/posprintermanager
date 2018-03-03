@@ -46,6 +46,9 @@ public class posprintermanager extends CordovaPlugin {
         Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
 
+
+    private CallbackContext callbackContext = null;
+    
     private static final String AppExternalDataDir = "/BetaResto/";
 
     @Override
