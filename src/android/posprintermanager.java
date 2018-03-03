@@ -117,7 +117,7 @@ public class posprintermanager extends CordovaPlugin {
                 public void run() {
                     Bitmap printRaw = buildPrintRaw(printData, printCanvas);
                     EpsonPrinter epsonPrinter = new EpsonPrinter(cordova.getActivity(), callbackContext);
-                    epsonPrinter.print(printRaw,pulse, model, lang, address, cordova.getActivity());
+                    epsonPrinter.print(printRaw,pulse, model, lang, address);
                 }
             });
         } else if (vendor.equals("STAR")) {

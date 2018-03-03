@@ -74,14 +74,14 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 
     }
 
-    public void print(final Bitmap printRaw, final JSONArray addPulse, final int printerSeries, final int lang, final String printTarget , Activity activity) {
+    public boolean print(final Bitmap printRaw, final JSONArray addPulse, final int printerSeries, final int lang, final String printTarget) {
 					//			printRaw Bitmap create by ReceiptBuilderExt
 					//			addPulse cash drawer  [ (0 no , 1 yes), (0-1  2pin, 5pin) , (time 0-4  100ms-500ms) ]
 					//          addSound  Buzzer //TODO
 					//			printerSeries  example { "model": "TM-T20, TM-T20II, TM-T20II-i", "value": "6" }
 					//			lang ANK model 0, Simplified Chinese model 1, etc
 					//          printTarget USB:/dev/////  BT: // TCP:192.168.1.101
-				runPrintReceiptSequence(printRaw, addPulse, printerSeries, lang, printTarget);
+			return	runPrintReceiptSequence(printRaw, addPulse, printerSeries, lang, printTarget);
 	}
 
 
@@ -330,10 +330,10 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			mPrinter.endTransaction();
 		}
 		catch (final Exception e) {
-			activity.runOnUiThread(new Runnable() {
+			this.activity.runOnUiThread(new Runnable() {
 				@Override
 				public synchronized void run() {
-					ShowMsg.showException(e, "endTransaction", activity);
+					ShowMsg.showException(e, "endTransaction", this.activity);
 				}
 			});
 		}
@@ -344,10 +344,10 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			// Log.i("停止打印","停止打印2");
 		}
 		catch (final Exception e) {
-			activity.runOnUiThread(new Runnable() {
+			this.activity.runOnUiThread(new Runnable() {
 				@Override
 				public synchronized void run() {
-					ShowMsg.showException(e, "disconnect", activity);
+					ShowMsg.showException(e, "disconnect", this.activity);
 				}
 			});
 		}
@@ -376,46 +376,46 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 	private String makeErrorMessage(PrinterStatusInfo status) {
 		String msg = "";
 		if (status.getOnline() == Printer.FALSE) {
-			msg += activity.getString(R.string.handlingmsg_err_offline);
+			msg += this.activity.getString(R.string.handlingmsg_err_offline);
 		}
 		if (status.getConnection() == Printer.FALSE) {
-			msg += activity.getString(R.string.handlingmsg_err_no_response);
+			msg += this.activity.getString(R.string.handlingmsg_err_no_response);
 		}
 		if (status.getCoverOpen() == Printer.TRUE) {
-			msg += activity.getString(R.string.handlingmsg_err_cover_open);
+			msg += this.activity.getString(R.string.handlingmsg_err_cover_open);
 		}
 		if (status.getPaper() == Printer.PAPER_EMPTY) {
-			msg += activity.getString(R.string.handlingmsg_err_receipt_end);
+			msg += this.activity.getString(R.string.handlingmsg_err_receipt_end);
 		}
 		if (status.getPaperFeed() == Printer.TRUE || status.getPanelSwitch() == Printer.SWITCH_ON) {
-			msg += activity.getString(R.string.handlingmsg_err_paper_feed);
+			msg += this.activity.getString(R.string.handlingmsg_err_paper_feed);
 		}
 		if (status.getErrorStatus() == Printer.MECHANICAL_ERR || status.getErrorStatus() == Printer.AUTOCUTTER_ERR) {
-			msg += activity.getString(R.string.handlingmsg_err_autocutter);
-			msg += activity.getString(R.string.handlingmsg_err_need_recover);
+			msg += this.activity.getString(R.string.handlingmsg_err_autocutter);
+			msg += this.activity.getString(R.string.handlingmsg_err_need_recover);
 		}
 		if (status.getErrorStatus() == Printer.UNRECOVER_ERR) {
-			msg += activity.getString(R.string.handlingmsg_err_unrecover);
+			msg += this.activity.getString(R.string.handlingmsg_err_unrecover);
 		}
 		if (status.getErrorStatus() == Printer.AUTORECOVER_ERR) {
 			if (status.getAutoRecoverError() == Printer.HEAD_OVERHEAT) {
-				msg += activity.getString(R.string.handlingmsg_err_overheat);
-				msg += activity.getString(R.string.handlingmsg_err_head);
+				msg += this.activity.getString(R.string.handlingmsg_err_overheat);
+				msg += this.activity.getString(R.string.handlingmsg_err_head);
 			}
 			if (status.getAutoRecoverError() == Printer.MOTOR_OVERHEAT) {
-				msg += activity.getString(R.string.handlingmsg_err_overheat);
-				msg += activity.getString(R.string.handlingmsg_err_motor);
+				msg += this.activity.getString(R.string.handlingmsg_err_overheat);
+				msg += this.activity.getString(R.string.handlingmsg_err_motor);
 			}
 			if (status.getAutoRecoverError() == Printer.BATTERY_OVERHEAT) {
-				msg += activity.getString(R.string.handlingmsg_err_overheat);
-				msg += activity.getString(R.string.handlingmsg_err_battery);
+				msg += this.activity.getString(R.string.handlingmsg_err_overheat);
+				msg += this.activity.getString(R.string.handlingmsg_err_battery);
 			}
 			if (status.getAutoRecoverError() == Printer.WRONG_PAPER) {
-				msg += activity.getString(R.string.handlingmsg_err_wrong_paper);
+				msg += this.activity.getString(R.string.handlingmsg_err_wrong_paper);
 			}
 		}
 		if (status.getBatteryLevel() == Printer.BATTERY_LEVEL_0) {
-			msg += activity.getString(R.string.handlingmsg_err_battery_real_end);
+			msg += this.activity.getString(R.string.handlingmsg_err_battery_real_end);
 		}
 
 		return msg;
@@ -425,9 +425,9 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 
 	private void showProgressDialog(final String title, final String message)
 	{
-		activity.runOnUiThread(new Runnable() {
+		this.activity.runOnUiThread(new Runnable() {
 			public void run() {
-				progressDialog = new ProgressDialog(activity);
+				progressDialog = new ProgressDialog(this.activity);
 
 				progressDialog.setTitle(title); //title
 
@@ -449,11 +449,11 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 	}
 	
 	public void onPtrReceive(final Printer printerObj, final int code, final PrinterStatusInfo status, final String printJobId) {
-		activity.runOnUiThread(new Runnable() {
+		this.activity.runOnUiThread(new Runnable() {
 			@Override
 			public synchronized void run() {
 				EpsonPrinter.this.callbackContext.success();
-				Toast.makeText(activity, "Result: " + getCodeText(code), Toast.LENGTH_SHORT)
+				Toast.makeText(this.activity, "Result: " + getCodeText(code), Toast.LENGTH_SHORT)
 						.show();
 				//				ShowMsg.showResult(code, makeErrorMessage(status), activity);
 
@@ -602,11 +602,11 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 		}
 
 		public void showToast(final DeviceInfo deviceInfo) {
-			activity.runOnUiThread(new Runnable() {
+			this.activity.runOnUiThread(new Runnable() {
 				public void run() {
-					Toast.makeText(activity, "PrinterName: " + deviceInfo.getDeviceName(),
+					Toast.makeText(this.activity, "PrinterName: " + deviceInfo.getDeviceName(),
 					Toast.LENGTH_SHORT).show();
-					Toast.makeText(activity, "Target: " + deviceInfo.getTarget(), Toast.LENGTH_SHORT)
+					Toast.makeText(this.activity, "Target: " + deviceInfo.getTarget(), Toast.LENGTH_SHORT)
 					.show();
 				}
 			});
