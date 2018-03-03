@@ -83,11 +83,11 @@ public class posprintermanager extends CordovaPlugin {
 
         if(action.equals("print")) {
             final String vendor = args.optString(0);
-            final JSONArray printData = args.optJSAONArray(1);
-            final JSONArray printCanvas = args.optJSAONArray(2);
-            final JSONArray pulse = args.optJSAONArray(3);
-            final Int model = args.optInt(4);
-            final Int lang = args.optInt(5);
+            final JSONArray printData = args.optJSONArray(1);
+            final JSONArray printCanvas = args.optJSONArray(2);
+            final JSONArray pulse = args.optJSONArray(3);
+            final int model = args.optInt(4);
+            final int lang = args.optInt(5);
             final String address = args.optString(6);
             initPrint(vendor, printData, printCanvas, pulse, model, lang, address);
         }
@@ -112,14 +112,14 @@ public class posprintermanager extends CordovaPlugin {
 
     }
 
-    private void initPrint(final String vendor,  final JSONArray printData, final JSONArray printCanvas, final JSONArray pulse, final Int model, final Int lang, final String address) {
+    private void initPrint(final String vendor,  final JSONArray printData, final JSONArray printCanvas, final JSONArray pulse, final int model, final int lang, final String address) {
         if(vendor.equals("EPSON")) {
 
             cordova.getThreadPool().execute(new Runnable() {
                 public void run() {
                     Bitmap printRaw = buildPrintRaw(printData, printCanvas);
                     EpsonPrinter epsonPrinter = new EpsonPrinter(cordova.getActivity(), callbackContext);
-                    epsonPrinter.print(printRaw, cordova.getActivity());
+                    epsonPrinter.print(printRaw,pulse, model, lang, address, cordova.getActivity());
                 }
             });
         } else if (vendor.equals("STAR")) {
