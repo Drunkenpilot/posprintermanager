@@ -46,7 +46,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 
 
     public EpsonPrinter(Activity activity, CallbackContext callbackContext) {
-        this.activity = activity;
+        final this.activity = activity;
         this.callbackContext = callbackContext;
     }
 
@@ -602,11 +602,11 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 		}
 
 		public void showToast(final DeviceInfo deviceInfo) {
-			this.activity.runOnUiThread(new Runnable() {
+			cordova.getActivity().runOnUiThread(new Runnable() {
 				public void run() {
-					Toast.makeText(this.activity, "PrinterName: " + deviceInfo.getDeviceName(),
+					Toast.makeText(cordova.getActivity(), "PrinterName: " + deviceInfo.getDeviceName(),
 					Toast.LENGTH_SHORT).show();
-					Toast.makeText(this.activity, "Target: " + deviceInfo.getTarget(), Toast.LENGTH_SHORT)
+					Toast.makeText(cordova.getActivity(), "Target: " + deviceInfo.getTarget(), Toast.LENGTH_SHORT)
 					.show();
 				}
 			});
