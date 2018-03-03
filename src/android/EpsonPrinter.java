@@ -602,11 +602,11 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 		}
 
 		public void showToast(final DeviceInfo deviceInfo) {
-			cordova.getActivity().runOnUiThread(new Runnable() {
+			activity.runOnUiThread(new Runnable() {
 				public void run() {
-					Toast.makeText(cordova.getActivity(), "PrinterName: " + deviceInfo.getDeviceName(),
+					Toast.makeText(activity, "PrinterName: " + deviceInfo.getDeviceName(),
 					Toast.LENGTH_SHORT).show();
-					Toast.makeText(cordova.getActivity(), "Target: " + deviceInfo.getTarget(), Toast.LENGTH_SHORT)
+					Toast.makeText(activity, "Target: " + deviceInfo.getTarget(), Toast.LENGTH_SHORT)
 					.show();
 				}
 			});
