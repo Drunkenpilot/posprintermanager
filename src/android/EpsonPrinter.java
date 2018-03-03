@@ -223,41 +223,41 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			method = "addCut";
 			mPrinter.addCut(Printer.CUT_FEED);
 
-			final int pulse = addPulse.optInt(0);
-
-			if(pulse == 1){
-
-				final int drawer = addPulse.optInt(1);
-				final int drawerPin;
-				final int signal = addPulse.optInt(2);
-				final int signalTime;
-				switch (drawer) {
-					case 0:  drawerPin = Printer.DRAWER_2PIN;
-						break;
-					case 1:  drawerPin = Printer.DRAWER_5PIN;
-						break;
-					default: drawerPin = Printer.PARAM_DEFAULT;
-						break;
-				}
-
-				switch (signal) {
-					case 0:  signalTime = Printer.PULSE_100;
-						break;
-					case 1:  signalTime = Printer.PULSE_200;
-						break;
-					case 2:  signalTime = Printer.PULSE_300;
-						break;
-					case 3:  signalTime = Printer.PULSE_400;
-						break;
-					case 4:  signalTime = Printer.PULSE_500;
-						break;
-					default: signalTime = Printer.PARAM_DEFAULT;
-						break;
-				}
-
-				method = "addPulse";
-				mPrinter.addPulse(drawerPin, signalTime);
-			}
+//			final int pulse = addPulse.optInt(0);
+//
+//			if(pulse == 1){
+//
+//				final int drawer = addPulse.optInt(1);
+//				final int drawerPin;
+//				final int signal = addPulse.optInt(2);
+//				final int signalTime;
+//				switch (drawer) {
+//					case 0:  drawerPin = Printer.DRAWER_2PIN;
+//						break;
+//					case 1:  drawerPin = Printer.DRAWER_5PIN;
+//						break;
+//					default: drawerPin = Printer.PARAM_DEFAULT;
+//						break;
+//				}
+//
+//				switch (signal) {
+//					case 0:  signalTime = Printer.PULSE_100;
+//						break;
+//					case 1:  signalTime = Printer.PULSE_200;
+//						break;
+//					case 2:  signalTime = Printer.PULSE_300;
+//						break;
+//					case 3:  signalTime = Printer.PULSE_400;
+//						break;
+//					case 4:  signalTime = Printer.PULSE_500;
+//						break;
+//					default: signalTime = Printer.PARAM_DEFAULT;
+//						break;
+//				}
+//
+//				method = "addPulse";
+//				mPrinter.addPulse(drawerPin, signalTime);
+//			}
 
 		}
 		catch (Exception e) {
