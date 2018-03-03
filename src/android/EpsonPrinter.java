@@ -463,8 +463,8 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 					@Override
 					public void run() {
 						disconnectPrinter();
-						Toast.makeText(activity, "Disconnected ", Toast.LENGTH_SHORT)
-								.show();
+//						Toast.makeText(activity, "Disconnected ", Toast.LENGTH_SHORT)
+//								.show();
 					}
 				}).start();
 			}
