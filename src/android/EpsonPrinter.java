@@ -178,7 +178,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			//			Generate main content
 
 				method = "addTextAlign";
-				mPrinter.addTextAlign(Printer.ALIGN_CENTER);
+				mPrinter.addTextAlign(Printer.ALIGN_LEFT);
 
 				method = "addImage";
 				mPrinter.addImage(
