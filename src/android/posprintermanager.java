@@ -48,7 +48,7 @@ public class posprintermanager extends CordovaPlugin {
 
 
     private CallbackContext callbackContext = null;
-    
+
     private static final String AppExternalDataDir = "/BetaResto/";
 
     @Override

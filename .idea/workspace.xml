@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ce24c247-5e6e-4eb0-ab32-4abb431236b3" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/android/EpsonPrinter.java" afterPath="$PROJECT_DIR$/src/android/EpsonPrinter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/android/posprintermanager.java" afterPath="$PROJECT_DIR$/src/android/posprintermanager.java" />
     </list>
     <ignored path="posprintermanager.iws" />
@@ -29,11 +30,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="posprintermanager.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="posprintermanager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/android/posprintermanager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="365">
-              <caret line="50" column="4" lean-forward="false" selection-start-line="50" selection-start-column="4" selection-end-line="50" selection-end-column="4" />
+            <state relative-caret-position="244">
+              <caret line="131" column="102" lean-forward="true" selection-start-line="131" selection-start-column="91" selection-end-line="131" selection-end-column="102" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -41,11 +42,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EpsonPrinter.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ReceiptBuilderExt.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/android/ReceiptBuilderExt.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="748">
+              <caret line="51" column="47" lean-forward="true" selection-start-line="51" selection-start-column="47" selection-end-line="51" selection-end-column="47" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EpsonPrinter.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/android/EpsonPrinter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="379">
-              <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="51" />
+            <state relative-caret-position="421">
+              <caret line="455" column="39" lean-forward="false" selection-start-line="455" selection-start-column="39" selection-end-line="455" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -280,8 +293,8 @@
       <list>
         <option value="$PROJECT_DIR$/plugin.xml" />
         <option value="$PROJECT_DIR$/www/posprintermanager.js" />
-        <option value="$PROJECT_DIR$/src/android/EpsonPrinter.java" />
         <option value="$PROJECT_DIR$/src/android/posprintermanager.java" />
+        <option value="$PROJECT_DIR$/src/android/EpsonPrinter.java" />
       </list>
     </option>
   </component>
@@ -632,7 +645,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1520091218825" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1520092435440" />
       </method>
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests">
@@ -678,7 +691,7 @@
       </Profilers>
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1520091218825" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1520092435440" />
       </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -1016,16 +1029,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/android/ReceiptBuilderExt.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1196">
-          <caret line="19" column="22" lean-forward="true" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/posprintermanager.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
@@ -1066,20 +1069,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/android/EpsonPrinter.java">
+    <entry file="file://$PROJECT_DIR$/src/android/posprintermanager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
-          <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="51" />
+        <state relative-caret-position="244">
+          <caret line="131" column="102" lean-forward="true" selection-start-line="131" selection-start-column="91" selection-end-line="131" selection-end-column="102" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/android/posprintermanager.java">
+    <entry file="file://$PROJECT_DIR$/src/android/ReceiptBuilderExt.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="50" column="4" lean-forward="false" selection-start-line="50" selection-start-column="4" selection-end-line="50" selection-end-column="4" />
+        <state relative-caret-position="748">
+          <caret line="51" column="47" lean-forward="true" selection-start-line="51" selection-start-column="47" selection-end-line="51" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/android/EpsonPrinter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="421">
+          <caret line="455" column="39" lean-forward="false" selection-start-line="455" selection-start-column="39" selection-end-line="455" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
