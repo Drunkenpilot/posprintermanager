@@ -294,7 +294,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			mPrinter.connect(printTarget, Printer.PARAM_DEFAULT);
 		}
 		catch (Exception e) {
-			EpsonPrinter.this.callbackContext.error("e:" + ((Epos2Exception) e).getErrorStatus());
+			callbackContext.error("e:" + ((Epos2Exception) e).getErrorStatus());
 			ShowMsg.showException(e, "connect", activity);
 			return false;
 		}
@@ -304,7 +304,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			isBeginTransaction = true;
 		}
 		catch (Exception e) {
-			EpsonPrinter.this.callbackContext.error("e:" + ((Epos2Exception) e).getErrorStatus());
+			callbackContext.error("e:" + ((Epos2Exception) e).getErrorStatus());
 			ShowMsg.showException(e, "beginTransaction", activity);
 		}
 
@@ -452,7 +452,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 		activity.runOnUiThread(new Runnable() {
 			@Override
 			public synchronized void run() {
-				EpsonPrinter.this.callbackContext.success();
+				callbackContext.success();
 				Toast.makeText(activity, "Result: " + getCodeText(code), Toast.LENGTH_SHORT)
 						.show();
 				//				ShowMsg.showResult(code, makeErrorMessage(status), activity);
@@ -463,6 +463,8 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 					@Override
 					public void run() {
 						disconnectPrinter();
+						Toast.makeText(activity, "Disconnected ", Toast.LENGTH_SHORT)
+								.show();
 					}
 				}).start();
 			}
