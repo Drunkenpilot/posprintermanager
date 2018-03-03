@@ -138,6 +138,7 @@ public class posprintermanager extends CordovaPlugin {
             Log.e("TestError: ", Log.getStackTraceString(e));
             this.callbackContext.error(Log.getStackTraceString(e));
             this.showToast("Image build failed");
+            return null;
         }
     }
 
