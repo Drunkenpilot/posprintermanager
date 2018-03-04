@@ -107,8 +107,8 @@
     <source-file src="src/android/ShowMsg.java" target-dir="src/cordova/plugin/posprintermanager" />
     <source-file src="libs/ePOS2.jar" target-dir="libs" />
     <source-file src="libs/armeabi/libepos2.so" target-dir="libs/armeabi" />
-    <source-file src="libs/armeabi-v7a/libepos2.so" target-dir="libs/armeabi-v7a/" />
-    <source-file src="libs/armeabi-v8a/libepos2.so" target-dir="libs/armeabi-v8a/" />
+    <!--<source-file src="libs/armeabi-v7a/libepos2.so" target-dir="libs/armeabi-v7a/" />-->
+    <!--<source-file src="libs/armeabi-v8a/libepos2.so" target-dir="libs/armeabi-v8a/" />-->
     <source-file src="src/android/drawreceiptlib/DrawBlankSpace.java" target-dir="src/android/drawreceiptlib"/>
     <source-file src="src/android/drawreceiptlib/DrawImage.java" target-dir="src/android/drawreceiptlib"/>
     <source-file src="src/android/drawreceiptlib/DrawLine.java" target-dir="src/android/drawreceiptlib"/>
