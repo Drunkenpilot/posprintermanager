@@ -107,7 +107,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 
 	private boolean initializeObject(final int printerSeries, final int lang) {
 		try {
-			mPrinter = new Printer(printerSeries,lang, activity);
+			mPrinter = new Printer(printerSeries,lang, activity.getApplicationContext());
 		}
 		catch (Exception e) {
 //			EpsonPrinter.this.callbackContext.error("e:" + ((Epos2Exception) e).getErrorStatus());
@@ -115,8 +115,32 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			return false;
 		}
 
-		mPrinter.setReceiveEventListener(this);
+		mPrinter.setReceiveEventListener(new ReceiveListener() {
+			@Override
+			public void onPtrReceive(final Printer printerObj, final int code, final PrinterStatusInfo status, final String printJobId) {
+				if(code == Epos2CallbackCode.CODE_SUCCESS){
+					Log.i("调试","调试*");
+					activity.runOnUiThread(new Runnable() {
+						@Override
+						public synchronized void run() {
+							Log.i("调试","调试**");
+							callbackContext.success();
+//				ShowMsg.showResult(code, makeErrorMessage(status), activity);
+							new Thread(new Runnable() {
+								@Override
+								public void run() {
+									Log.i("调试","调试***");
+									disconnectPrinter();
+								}
+							}).start();
+							
+						}
+					});
+				}
+				}
 
+		});
+		Log.i("调试","调试+");
 		return true;
 	}
 
@@ -463,27 +487,28 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			}
 		});
 	}
-	
-	public void onPtrReceive(final Printer printerObj, final int code, final PrinterStatusInfo status, final String printJobId) {
-		Log.i("调试","调试*");
-		activity.runOnUiThread(new Runnable() {
-			@Override
-			public synchronized void run() {
-				Log.i("调试","调试**");
-				callbackContext.success();
-//				ShowMsg.showResult(code, makeErrorMessage(status), activity);
-				new Thread(new Runnable() {
-					@Override
-					public void run() {
-						Log.i("调试","调试***");
-						disconnectPrinter();
-					}
-				}).start();
 
-
-			}
-		});
-	}
+//	@Override
+//	public void onPtrReceive(final Printer printerObj, final int code, final PrinterStatusInfo status, final String printJobId) {
+//		Log.i("调试","调试*");
+//		activity.runOnUiThread(new Runnable() {
+//			@Override
+//			public synchronized void run() {
+//				Log.i("调试","调试**");
+//				callbackContext.success();
+////				ShowMsg.showResult(code, makeErrorMessage(status), activity);
+//				new Thread(new Runnable() {
+//					@Override
+//					public void run() {
+//						Log.i("调试","调试***");
+//						disconnectPrinter();
+//					}
+//				}).start();
+//
+//
+//			}
+//		});
+//	}
 
 	private void showToast(final String message) {
 		activity.runOnUiThread(new Runnable() {
