@@ -62,7 +62,7 @@ public class posprintermanager extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 
         this.callbackContext = callbackContext;
-//        mContext = this;
+        mContext = this;
 
         if(action.equals("buildImage")) {
             final JSONArray printContent = args.optJSONArray(0);
@@ -229,7 +229,7 @@ public class posprintermanager extends CordovaPlugin {
 
     private boolean initializeObject(final int printerSeries, final int lang) {
         try {
-            mPrinter = new Printer(printerSeries,lang,cordova.getActivity().getApplicationContext());
+            mPrinter = new Printer(printerSeries,lang,this);
         }
         catch (Exception e) {
 //            this.callbackContext.error("e:" + ((Epos2Exception) e).getErrorStatus());
@@ -237,7 +237,7 @@ public class posprintermanager extends CordovaPlugin {
             return false;
         }
 
-        mPrinter.setReceiveEventListener(cordova.getActivity().getApplicationContext() );
+        mPrinter.setReceiveEventListener(this );
 
         return true;
     }
