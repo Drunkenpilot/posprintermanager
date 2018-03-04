@@ -91,6 +91,8 @@ public class posprintermanager extends CordovaPlugin {
             final int lang = args.optInt(5);
             final String address = args.optString(6);
             initPrint(vendor, printData, printCanvas, pulse, model, lang, address);
+
+            return true;
         }
 
         return false;
