@@ -486,8 +486,6 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 						disconnectPrinter();
 					}
 				}).start();
-
-
 	}
 
 	private void showToast(final String message) {
