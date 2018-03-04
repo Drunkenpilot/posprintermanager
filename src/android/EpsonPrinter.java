@@ -465,8 +465,9 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			public synchronized void run() {
 
 				callbackContext.success();
-				showToast("Result: " + getCodeText(code));
-
+//				showToast("Result: " + getCodeText(code));
+				Toast.makeText(activity, "Result: " + getCodeText(code),
+						Toast.LENGTH_SHORT).show();
 				// dispPrinterWarnings(status);
 
 				new Thread(new Runnable() {

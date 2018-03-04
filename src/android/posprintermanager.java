@@ -26,9 +26,6 @@ import com.epson.epos2.printer.ReceiveListener;
 import com.epson.epos2.Epos2CallbackCode;
 
 import com.betaresto.terminal.R;
-import android.content.Context;
-import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.app.Activity;
 import android.support.v4.app.ActivityCompat;
 import android.content.pm.PackageManager;
@@ -52,7 +49,6 @@ public class posprintermanager extends CordovaPlugin {
     private ArrayList<HashMap<String, String>> mPrinterList = null;
     private FilterOption mFilterOption = null;
     private Printer  mPrinter = null;
-    private Context mContext = null;
     private CallbackContext callbackContext = null;
 
 
