@@ -281,6 +281,11 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 		mPrinter.setReceiveEventListener(null);
 
 		mPrinter = null;
+		activity.runOnUiThread(new Runnable() {
+					Toast.makeText(activity, "data cleared", Toast.LENGTH_SHORT)
+					.show();
+		});
+
 	}
 
 	private boolean connectPrinter(final String printTarget) {
