@@ -86,7 +86,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			public void run() {
 				runPrintReceiptSequence(printRaw, addPulse, printerSeries, lang, printTarget);
 			}
-		}).start();
+		}).run();
 
 	}
 
@@ -155,6 +155,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 
 		try {
 			mPrinter.sendData(Printer.PARAM_DEFAULT);
+			mPrinter.disconnect();
 		}
 		catch (Exception e) {
 			ShowMsg.showException(e, "sendData", activity);
@@ -474,9 +475,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 	@Override
 	public void onPtrReceive(final Printer printerObj, final int code, final PrinterStatusInfo status, final String printJobId) {
 		Log.i("调试","调试*");
-		activity.runOnUiThread(new Runnable() {
-			@Override
-			public synchronized void run() {
+
 				Log.i("调试","调试**");
 				callbackContext.success();
 //				ShowMsg.showResult(code, makeErrorMessage(status), activity);
@@ -490,8 +489,6 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 				}).start();
 
 
-			}
-		});
 	}
 
 	private void showToast(final String message) {
