@@ -107,7 +107,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 
 	private boolean initializeObject(final int printerSeries, final int lang) {
 		try {
-			mPrinter = new Printer(printerSeries,lang, activity.getApplicationContext()); 
+			mPrinter = new Printer(printerSeries,lang, activity.getApplicationContext());
 		}
 		catch (Exception e) {
 //			EpsonPrinter.this.callbackContext.error("e:" + ((Epos2Exception) e).getErrorStatus());
@@ -116,8 +116,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 		}
 
 		mPrinter.setReceiveEventListener(this);
-		callbackContext.success("ok1");
-		this.callbackContext.success("ok2");
+
 		Log.i("调试","调试+");
 		return true;
 	}
@@ -475,6 +474,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 				Log.i("调试","调试**");
 				callbackContext.success();
 //				ShowMsg.showResult(code, makeErrorMessage(status), activity);
+				showToast(getCodeText(code));
 				new Thread(new Runnable() {
 					@Override
 					public void run() {
