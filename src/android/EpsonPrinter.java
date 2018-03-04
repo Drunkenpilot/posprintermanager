@@ -333,8 +333,9 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 	}
 
 	private void disconnectPrinter() {
-		showToast("start disconnecting");
+		Log.i("调试","调试****");
 		if (mPrinter == null) {
+			Log.i("调试","调试5*");
 			return;
 		}
 
@@ -464,15 +465,17 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 	}
 	
 	public void onPtrReceive(final Printer printerObj, final int code, final PrinterStatusInfo status, final String printJobId) {
+		Log.i("调试","调试*");
 		activity.runOnUiThread(new Runnable() {
 			@Override
 			public synchronized void run() {
-
+				Log.i("调试","调试**");
 				callbackContext.success();
 //				ShowMsg.showResult(code, makeErrorMessage(status), activity);
 				new Thread(new Runnable() {
 					@Override
 					public void run() {
+						Log.i("调试","调试***");
 						disconnectPrinter();
 					}
 				}).start();
