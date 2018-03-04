@@ -176,18 +176,18 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 		try {
 
 			//			Generate main content
-
+			try {
 				method = "addTextAlign";
 				mPrinter.addTextAlign(Printer.ALIGN_LEFT);
-			textData.append("THE STORE 123 (555) 555 – 5555\n");
-			textData.append("STORE DIRECTOR – John Smith\n");
-			textData.append("\n");
-			textData.append("7/01/07 16:58 6153 05 0191 134\n");
-			textData.append("ST# 21 OP# 001 TE# 01 TR# 747\n");
-			textData.append("------------------------------\n");
-			method = "addText";
-			mPrinter.addText(textData.toString());
-			textData.delete(0, textData.length());
+				textData.append("THE STORE 123 (555) 555 – 5555\n");
+				textData.append("STORE DIRECTOR – John Smith\n");
+				textData.append("\n");
+				textData.append("7/01/07 16:58 6153 05 0191 134\n");
+				textData.append("ST# 21 OP# 001 TE# 01 TR# 747\n");
+				textData.append("------------------------------\n");
+				method = "addText";
+				mPrinter.addText(textData.toString());
+				textData.delete(0, textData.length());
 //				method = "addImage";
 //				mPrinter.addImage(
 //						printRaw, 0, 0,
@@ -227,9 +227,8 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 //				//			barcodeHeight);
 
 
-
-			method = "addCut";
-			mPrinter.addCut(Printer.CUT_FEED);
+				method = "addCut";
+				mPrinter.addCut(Printer.CUT_FEED);
 
 //			final int pulse = addPulse.optInt(0);
 //
@@ -267,6 +266,9 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 //				mPrinter.addPulse(drawerPin, signalTime);
 //			}
 
+			} catch (JSONException e){
+
+			}
 		}
 		catch (Exception e) {
 			ShowMsg.showException(e, method, activity);
