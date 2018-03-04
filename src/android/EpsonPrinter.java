@@ -462,7 +462,8 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			@Override
 			public synchronized void run() {
 
-
+				EpsonPrinter.this.callbackContext.success();
+				showToast("Result: " + getCodeText(code));
 
 				// dispPrinterWarnings(status);
 
@@ -474,8 +475,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 				}).start();
 //				callbackContext.success();
 //				ShowMsg.showResult(code, makeErrorMessage(status), activity);
-//				EpsonPrinter.this.callbackContext.success();
-				showToast("Result: " + getCodeText(code));
+
 			}
 		});
 	}
