@@ -109,6 +109,7 @@
     <source-file src="libs/armeabi/libepos2.so" target-dir="libs/armeabi" />
     <source-file src="libs/armeabi-v7a/libepos2.so" target-dir="libs/armeabi-v7a/" />
     <source-file src="libs/arm64-v8a/libepos2.so" target-dir="libs/arm64-v8a/" />
+    <source-file src="libs/x86/libepos2.so" target-dir="libs/x86/" />
     <!--<source-file src="libs/armeabi-v7a/libepos2.so" target-dir="lib/armeabi-v7a/" />-->
     <!--<source-file src="libs/arm64-v8a/libepos2.so" target-dir="lib/arm64-v8a/" />-->
 
