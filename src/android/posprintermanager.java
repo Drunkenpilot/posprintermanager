@@ -26,6 +26,8 @@ import com.epson.epos2.printer.ReceiveListener;
 import com.epson.epos2.Epos2CallbackCode;
 
 import com.betaresto.terminal.R;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.app.Activity;
 import android.support.v4.app.ActivityCompat;
 import android.content.pm.PackageManager;
@@ -122,7 +124,7 @@ public class posprintermanager extends CordovaPlugin {
 //                    Bitmap printRaw = buildPrintRaw(printData, printCanvas);
 //                    EpsonPrinter epsonPrinter = new EpsonPrinter(cordova.getActivity(), callbackContext);
 //                    epsonPrinter.print(printRaw,pulse, model, lang, address);
-                    runPrintReceiptSequence(printData, model,lang,address);
+                    runPrintReceiptSequence(printData, model,lang,address, printCanvas);
                 }
             });
         } else if (vendor.equals("STAR")) {
@@ -205,12 +207,12 @@ public class posprintermanager extends CordovaPlugin {
 
     /** Epson printer test code **/
 
-    private boolean runPrintReceiptSequence(final JSONArray printContent, final int printerSeries, final int lang, final String printTarget) {
+    private boolean runPrintReceiptSequence(final JSONArray printContent, final int printerSeries, final int lang, final String printTarget, final JSONArray printCanvas) {
         if (!initializeObject(printerSeries, lang)) {
             return false;
         }
 
-        if (!createReceiptData(printContent)) {
+        if (!createReceiptData(printContent, printCanvas)) {
             finalizeObject();
             return false;
         }
@@ -228,7 +230,7 @@ public class posprintermanager extends CordovaPlugin {
             mPrinter = new Printer(printerSeries,lang,cordova.getActivity());
         }
         catch (Exception e) {
-            EpsonPrinter.this.callbackContext.error("e:" + ((Epos2Exception) e).getErrorStatus());
+            posprintermanager.this.callbackContext.error("e:" + ((Epos2Exception) e).getErrorStatus());
             ShowMsg.showException(e, "Printer", cordova.getActivity());
             return false;
         }
@@ -252,7 +254,7 @@ public class posprintermanager extends CordovaPlugin {
         // dispPrinterWarnings(status);
 
         if (!isPrintable(status)) {
-            EpsonPrinter.this.callbackContext.error("e:" + makeErrorMessage(status));
+            posprintermanager.this.callbackContext.error("e:" + makeErrorMessage(status));
             ShowMsg.showMsg(makeErrorMessage(status), cordova.getActivity());
             try {
                 mPrinter.disconnect();
@@ -280,7 +282,7 @@ public class posprintermanager extends CordovaPlugin {
         return true;
     }
 
-    private boolean createReceiptData(final JSONArray printContent) {
+    private boolean createReceiptData(final JSONArray printContent, final JSONArray printCanvas) {
         if (mPrinter == null) {
             return false;
         }
@@ -295,7 +297,7 @@ public class posprintermanager extends CordovaPlugin {
             try{
                 method = "addTextAlign";
                 mPrinter.addTextAlign(Printer.ALIGN_CENTER);
-                ReceiptBuilderExt receiptBuilder = new ReceiptBuilderExt(cordova.getActivity());
+                ReceiptBuilderExt receiptBuilder = new ReceiptBuilderExt(cordova.getActivity(), printCanvas);
                 Bitmap testImg = receiptBuilder.build(printContent);
 
                 method = "addImage";
@@ -355,7 +357,7 @@ public class posprintermanager extends CordovaPlugin {
             mPrinter.connect(printTarget, Printer.PARAM_DEFAULT);
         }
         catch (Exception e) {
-            EpsonPrinter.this.callbackContext.error("e:" + ((Epos2Exception) e).getErrorStatus());
+            posprintermanager.this.callbackContext.error("e:" + ((Epos2Exception) e).getErrorStatus());
             ShowMsg.showException(e, "connect", cordova.getActivity());
             return false;
         }
@@ -365,7 +367,7 @@ public class posprintermanager extends CordovaPlugin {
             isBeginTransaction = true;
         }
         catch (Exception e) {
-            EpsonPrinter.this.callbackContext.error("e:" + ((Epos2Exception) e).getErrorStatus());
+            posprintermanager.this.callbackContext.error("e:" + ((Epos2Exception) e).getErrorStatus());
             ShowMsg.showException(e, "beginTransaction", cordova.getActivity());
         }
 
@@ -491,7 +493,7 @@ public class posprintermanager extends CordovaPlugin {
         cordova.getActivity().runOnUiThread(new Runnable() {
             @Override
             public synchronized void run() {
-                EpsonPrinter.this.callbackContext.success();
+                posprintermanager.this.callbackContext.success();
                 // ShowMsg.showResult(code, makeErrorMessage(status), cordova.getActivity());
                 Toast.makeText(cordova.getActivity(), "Result: " + getCodeText(code), Toast.LENGTH_SHORT)
                         .show();
