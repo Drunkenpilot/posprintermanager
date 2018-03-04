@@ -114,7 +114,7 @@
     <!--<source-file src="src/android/libs/mips/libepos2.so" target-dir="libs/mips/" />-->
     <!--<source-file src="src/android/libs/mips64/libepos2.so" target-dir="libs/mips64/" />-->
     <!--<source-file src="src/android/libs/x86/libepos2.so" target-dir="libs/x86/" />-->
-    <source-file src="src/android/libs/x86_64/libepos2.so" target-dir="libs/x86_64/" />
+    <!--<source-file src="src/android/libs/x86_64/libepos2.so" target-dir="libs/x86_64/" />-->
 
     <source-file src="src/android/drawreceiptlib/DrawBlankSpace.java" target-dir="src/android/drawreceiptlib"/>
     <source-file src="src/android/drawreceiptlib/DrawImage.java" target-dir="src/android/drawreceiptlib"/>
