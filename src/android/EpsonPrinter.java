@@ -479,7 +479,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 					}
 				}).start();
 //				callbackContext.success();
-//				ShowMsg.showResult(code, makeErrorMessage(status), activity);
+				ShowMsg.showResult(code, makeErrorMessage(status), activity);
 
 			}
 		});
