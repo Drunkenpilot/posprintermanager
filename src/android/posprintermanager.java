@@ -235,7 +235,7 @@ public class posprintermanager extends CordovaPlugin {
             return false;
         }
 
-        mPrinter.setReceiveEventListener(this);
+        mPrinter.setReceiveEventListener(cordova.getActivity());
 
         return true;
     }
@@ -294,7 +294,6 @@ public class posprintermanager extends CordovaPlugin {
 
 
             //			Generate main content
-            try{
                 method = "addTextAlign";
                 mPrinter.addTextAlign(Printer.ALIGN_CENTER);
                 ReceiptBuilderExt receiptBuilder = new ReceiptBuilderExt(cordova.getActivity(), printCanvas);
@@ -313,9 +312,7 @@ public class posprintermanager extends CordovaPlugin {
                 method = "addFeedLine";
                 mPrinter.addFeedLine(1);
 
-            } catch(JSONException e){
 
-            }
 
             method = "addCut";
             mPrinter.addCut(Printer.CUT_FEED);
@@ -493,7 +490,7 @@ public class posprintermanager extends CordovaPlugin {
         cordova.getActivity().runOnUiThread(new Runnable() {
             @Override
             public synchronized void run() {
-                this.callbackContext.success();
+                posprintermanager.this.callbackContext.success();
                 // ShowMsg.showResult(code, makeErrorMessage(status), cordova.getActivity());
                 Toast.makeText(cordova.getActivity(), "Result: " + getCodeText(code), Toast.LENGTH_SHORT)
                         .show();
