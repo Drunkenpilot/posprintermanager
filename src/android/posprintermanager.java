@@ -26,6 +26,7 @@ import com.epson.epos2.printer.ReceiveListener;
 import com.epson.epos2.Epos2CallbackCode;
 
 import com.betaresto.terminal.R;
+import android.content.Context;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.app.Activity;
@@ -51,7 +52,7 @@ public class posprintermanager extends CordovaPlugin {
     private ArrayList<HashMap<String, String>> mPrinterList = null;
     private FilterOption mFilterOption = null;
     private Printer  mPrinter = null;
-
+    private Context mContext = null;
     private CallbackContext callbackContext = null;
 
 
@@ -61,6 +62,7 @@ public class posprintermanager extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 
         this.callbackContext = callbackContext;
+//        mContext = this;
 
         if(action.equals("buildImage")) {
             final JSONArray printContent = args.optJSONArray(0);
@@ -227,15 +229,15 @@ public class posprintermanager extends CordovaPlugin {
 
     private boolean initializeObject(final int printerSeries, final int lang) {
         try {
-            mPrinter = new Printer(printerSeries,lang,cordova.getActivity());
+            mPrinter = new Printer(printerSeries,lang,cordova.getActivity().getApplicationContext());
         }
         catch (Exception e) {
-            this.callbackContext.error("e:" + ((Epos2Exception) e).getErrorStatus());
+//            this.callbackContext.error("e:" + ((Epos2Exception) e).getErrorStatus());
             ShowMsg.showException(e, "Printer", cordova.getActivity());
             return false;
         }
 
-        mPrinter.setReceiveEventListener(cordova.getActivity());
+        mPrinter.setReceiveEventListener(cordova.getActivity().getApplicationContext() );
 
         return true;
     }

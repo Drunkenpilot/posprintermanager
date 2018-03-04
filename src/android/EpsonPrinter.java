@@ -115,7 +115,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			return false;
 		}
 
-		mPrinter.setReceiveEventListener(this);
+		mPrinter.setReceiveEventListener(activity);
 
 		return true;
 	}
