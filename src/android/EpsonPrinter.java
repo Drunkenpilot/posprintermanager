@@ -333,6 +333,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 	}
 
 	private void disconnectPrinter() {
+		showToast("start disconnecting");
 		if (mPrinter == null) {
 			return;
 		}
@@ -353,6 +354,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			// Log.i("停止打印","停止打印1");
 			mPrinter.disconnect();
 			// Log.i("停止打印","停止打印2");
+			showToast("disconnected");
 		}
 		catch (final Exception e) {
 			activity.runOnUiThread(new Runnable() {
