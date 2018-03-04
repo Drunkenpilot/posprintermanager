@@ -155,7 +155,6 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 
 		try {
 			mPrinter.sendData(Printer.PARAM_DEFAULT);
-			disconnectPrinter();
 		}
 		catch (Exception e) {
 			ShowMsg.showException(e, "sendData", activity);
