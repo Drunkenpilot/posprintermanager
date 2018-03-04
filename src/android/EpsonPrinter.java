@@ -179,18 +179,26 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 
 				method = "addTextAlign";
 				mPrinter.addTextAlign(Printer.ALIGN_LEFT);
-
-				method = "addImage";
-				mPrinter.addImage(
-						printRaw, 0, 0,
-						printRaw.getWidth(),
-						printRaw.getHeight(),
-						Printer.COLOR_1,
-						Printer.MODE_MONO,
-						Printer.HALFTONE_DITHER,
-						Printer.PARAM_DEFAULT,
-						Printer.COMPRESS_AUTO
-				);
+			textData.append("THE STORE 123 (555) 555 – 5555\n");
+			textData.append("STORE DIRECTOR – John Smith\n");
+			textData.append("\n");
+			textData.append("7/01/07 16:58 6153 05 0191 134\n");
+			textData.append("ST# 21 OP# 001 TE# 01 TR# 747\n");
+			textData.append("------------------------------\n");
+			method = "addText";
+			mPrinter.addText(textData.toString());
+			textData.delete(0, textData.length());
+//				method = "addImage";
+//				mPrinter.addImage(
+//						printRaw, 0, 0,
+//						printRaw.getWidth(),
+//						printRaw.getHeight(),
+//						Printer.COLOR_1,
+//						Printer.MODE_MONO,
+//						Printer.HALFTONE_DITHER,
+//						Printer.PARAM_DEFAULT,
+//						Printer.COMPRESS_AUTO
+//				);
 
 				method = "addFeedLine";
 				mPrinter.addFeedLine(1);
