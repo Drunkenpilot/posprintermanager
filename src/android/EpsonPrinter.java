@@ -115,31 +115,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			return false;
 		}
 
-		mPrinter.setReceiveEventListener(new ReceiveListener() {
-//			@Override
-			public void onPtrReceive(final Printer printerObj, final int code, final PrinterStatusInfo status, final String printJobId) {
-				if(code == Epos2CallbackCode.CODE_SUCCESS){
-					Log.i("调试","调试*");
-					activity.runOnUiThread(new Runnable() {
-						@Override
-						public synchronized void run() {
-							Log.i("调试","调试**");
-							callbackContext.success();
-//				ShowMsg.showResult(code, makeErrorMessage(status), activity);
-							new Thread(new Runnable() {
-								@Override
-								public void run() {
-									Log.i("调试","调试***");
-									disconnectPrinter();
-								}
-							}).start();
-
-						}
-					});
-				}
-				}
-
-		});
+		mPrinter.setReceiveEventListener(this);
 		Log.i("调试","调试+");
 		return true;
 	}
@@ -488,27 +464,27 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 		});
 	}
 
-//	@Override
-//	public void onPtrReceive(final Printer printerObj, final int code, final PrinterStatusInfo status, final String printJobId) {
-//		Log.i("调试","调试*");
-//		activity.runOnUiThread(new Runnable() {
-//			@Override
-//			public synchronized void run() {
-//				Log.i("调试","调试**");
-//				callbackContext.success();
-////				ShowMsg.showResult(code, makeErrorMessage(status), activity);
-//				new Thread(new Runnable() {
-//					@Override
-//					public void run() {
-//						Log.i("调试","调试***");
-//						disconnectPrinter();
-//					}
-//				}).start();
-//
-//
-//			}
-//		});
-//	}
+	@Override
+	public void onPtrReceive(final Printer printerObj, final int code, final PrinterStatusInfo status, final String printJobId) {
+		Log.i("调试","调试*");
+		activity.runOnUiThread(new Runnable() {
+			@Override
+			public synchronized void run() {
+				Log.i("调试","调试**");
+				callbackContext.success();
+//				ShowMsg.showResult(code, makeErrorMessage(status), activity);
+				new Thread(new Runnable() {
+					@Override
+					public void run() {
+						Log.i("调试","调试***");
+						disconnectPrinter();
+					}
+				}).start();
+
+
+			}
+		});
+	}
 
 	private void showToast(final String message) {
 		activity.runOnUiThread(new Runnable() {
