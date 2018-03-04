@@ -230,7 +230,7 @@ public class posprintermanager extends CordovaPlugin {
             mPrinter = new Printer(printerSeries,lang,cordova.getActivity());
         }
         catch (Exception e) {
-            posprintermanager.this.callbackContext.error("e:" + ((Epos2Exception) e).getErrorStatus());
+            this.callbackContext.error("e:" + ((Epos2Exception) e).getErrorStatus());
             ShowMsg.showException(e, "Printer", cordova.getActivity());
             return false;
         }
@@ -254,7 +254,7 @@ public class posprintermanager extends CordovaPlugin {
         // dispPrinterWarnings(status);
 
         if (!isPrintable(status)) {
-            posprintermanager.this.callbackContext.error("e:" + makeErrorMessage(status));
+           this.callbackContext.error("e:" + makeErrorMessage(status));
             ShowMsg.showMsg(makeErrorMessage(status), cordova.getActivity());
             try {
                 mPrinter.disconnect();
@@ -357,7 +357,7 @@ public class posprintermanager extends CordovaPlugin {
             mPrinter.connect(printTarget, Printer.PARAM_DEFAULT);
         }
         catch (Exception e) {
-            posprintermanager.this.callbackContext.error("e:" + ((Epos2Exception) e).getErrorStatus());
+            this.callbackContext.error("e:" + ((Epos2Exception) e).getErrorStatus());
             ShowMsg.showException(e, "connect", cordova.getActivity());
             return false;
         }
@@ -367,7 +367,7 @@ public class posprintermanager extends CordovaPlugin {
             isBeginTransaction = true;
         }
         catch (Exception e) {
-            posprintermanager.this.callbackContext.error("e:" + ((Epos2Exception) e).getErrorStatus());
+            this.callbackContext.error("e:" + ((Epos2Exception) e).getErrorStatus());
             ShowMsg.showException(e, "beginTransaction", cordova.getActivity());
         }
 
@@ -488,12 +488,12 @@ public class posprintermanager extends CordovaPlugin {
         return msg;
     }
 
-     @Override
+//     @Override
     public void onPtrReceive(final Printer printerObj, final int code, final PrinterStatusInfo status, final String printJobId) {
         cordova.getActivity().runOnUiThread(new Runnable() {
             @Override
             public synchronized void run() {
-                posprintermanager.this.callbackContext.success();
+                this.callbackContext.success();
                 // ShowMsg.showResult(code, makeErrorMessage(status), cordova.getActivity());
                 Toast.makeText(cordova.getActivity(), "Result: " + getCodeText(code), Toast.LENGTH_SHORT)
                         .show();
@@ -569,31 +569,5 @@ public class posprintermanager extends CordovaPlugin {
     }
 
 
-    private ProgressDialog progressDialog;   // class variable
 
-    private void showProgressDialog(final String title, final String message)
-    {
-        cordova.getActivity().runOnUiThread(new Runnable() {
-            public void run() {
-                progressDialog = new ProgressDialog(cordova.getActivity());
-
-                progressDialog.setTitle(title); //title
-
-                progressDialog.setMessage(message); // message
-
-                progressDialog.setCancelable(false);
-
-                progressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        stopDiscovery();
-                        dialog.dismiss();
-                    }
-                });
-
-                progressDialog.show();
-            }
-        });
-    }
-    
 }
