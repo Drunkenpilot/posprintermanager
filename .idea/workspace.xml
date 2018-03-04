@@ -54,14 +54,14 @@
       <file leaf-file-name="EpsonPrinter.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/android/EpsonPrinter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1837">
-              <caret line="360" column="98" lean-forward="false" selection-start-line="360" selection-start-column="98" selection-end-line="360" selection-end-column="98" />
+            <state relative-caret-position="391">
+              <caret line="357" column="38" lean-forward="true" selection-start-line="357" selection-start-column="38" selection-end-line="357" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#9178#9179#0" expanded="true" />
                 <element signature="e#9243#9244#0" expanded="true" />
-                <element signature="e#13130#13131#0" expanded="true" />
-                <element signature="e#13164#13165#0" expanded="true" />
+                <element signature="e#13126#13127#0" expanded="true" />
+                <element signature="e#13160#13161#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -677,7 +677,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1520181449660" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1520181527327" />
       </method>
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests">
@@ -723,7 +723,7 @@
       </Profilers>
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1520181449660" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1520181527327" />
       </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -994,8 +994,8 @@
             <element signature="imports" expanded="true" />
             <element signature="e#9178#9179#0" expanded="true" />
             <element signature="e#9243#9244#0" expanded="true" />
-            <element signature="e#13130#13131#0" expanded="true" />
-            <element signature="e#13164#13165#0" expanded="true" />
+            <element signature="e#13126#13127#0" expanded="true" />
+            <element signature="e#13160#13161#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1036,8 +1036,8 @@
             <element signature="imports" expanded="true" />
             <element signature="e#9178#9179#0" expanded="true" />
             <element signature="e#9243#9244#0" expanded="true" />
-            <element signature="e#13130#13131#0" expanded="true" />
-            <element signature="e#13164#13165#0" expanded="true" />
+            <element signature="e#13126#13127#0" expanded="true" />
+            <element signature="e#13160#13161#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1078,8 +1078,8 @@
             <element signature="imports" expanded="true" />
             <element signature="e#9178#9179#0" expanded="true" />
             <element signature="e#9243#9244#0" expanded="true" />
-            <element signature="e#13130#13131#0" expanded="true" />
-            <element signature="e#13164#13165#0" expanded="true" />
+            <element signature="e#13126#13127#0" expanded="true" />
+            <element signature="e#13160#13161#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1282,14 +1282,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/android/EpsonPrinter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1837">
-          <caret line="360" column="98" lean-forward="false" selection-start-line="360" selection-start-column="98" selection-end-line="360" selection-end-column="98" />
+        <state relative-caret-position="391">
+          <caret line="357" column="38" lean-forward="true" selection-start-line="357" selection-start-column="38" selection-end-line="357" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#9178#9179#0" expanded="true" />
             <element signature="e#9243#9244#0" expanded="true" />
-            <element signature="e#13130#13131#0" expanded="true" />
-            <element signature="e#13164#13165#0" expanded="true" />
+            <element signature="e#13126#13127#0" expanded="true" />
+            <element signature="e#13160#13161#0" expanded="true" />
           </folding>
         </state>
       </provider>

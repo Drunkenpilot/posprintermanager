@@ -352,9 +352,9 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 		}
 
 		try {
-			// Log.i("停止打印","停止打印1");
+			 Log.i("停止打印","停止打印1");
 			mPrinter.disconnect();
-			// Log.i("停止打印","停止打印2");
+			 Log.i("停止打印","停止打印2");
 			showToast("disconnected");
 		}
 		catch (final Exception e) {
