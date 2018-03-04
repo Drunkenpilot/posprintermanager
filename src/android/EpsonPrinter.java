@@ -107,7 +107,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 
 	private boolean initializeObject(final int printerSeries, final int lang) {
 		try {
-			mPrinter = new Printer(printerSeries,lang, activity.getApplicationContext());
+			mPrinter = new Printer(printerSeries,lang); //, activity.getApplicationContext()
 		}
 		catch (Exception e) {
 //			EpsonPrinter.this.callbackContext.error("e:" + ((Epos2Exception) e).getErrorStatus());
