@@ -305,7 +305,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			mPrinter.connect(printTarget, Printer.PARAM_DEFAULT);
 		}
 		catch (Exception e) {
-//			EpsonPrinter.this.callbackContext.error("e:" + ((Epos2Exception) e).getErrorStatus());
+			EpsonPrinter.this.callbackContext.error("e:" + ((Epos2Exception) e).getErrorStatus());
 			ShowMsg.showException(e, "connect", activity);
 			return false;
 		}
@@ -315,7 +315,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			isBeginTransaction = true;
 		}
 		catch (Exception e) {
-//			EpsonPrinter.this.callbackContext.error("e:" + ((Epos2Exception) e).getErrorStatus());
+			EpsonPrinter.this.callbackContext.error("e:" + ((Epos2Exception) e).getErrorStatus());
 			ShowMsg.showException(e, "beginTransaction", activity);
 		}
 
@@ -342,6 +342,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			mPrinter.endTransaction();
 		}
 		catch (final Exception e) {
+			EpsonPrinter.this.callbackContext.error("e:" + ((Epos2Exception) e).getErrorStatus());
 			activity.runOnUiThread(new Runnable() {
 				@Override
 				public synchronized void run() {
@@ -357,6 +358,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			showToast("disconnected");
 		}
 		catch (final Exception e) {
+			EpsonPrinter.this.callbackContext.error("e:" + ((Epos2Exception) e).getErrorStatus());
 			activity.runOnUiThread(new Runnable() {
 				@Override
 				public synchronized void run() {
@@ -466,27 +468,25 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			@Override
 			public synchronized void run() {
 
-//				callbackContext.success(true);
-				showToast("Result: " + getCodeText(code));
-
-				activity.runOnUiThread(new Runnable() {
-					@Override
-					public void run() {
-						showToast("Staring");
-						disconnectPrinter();
-					}
-				});
 				callbackContext.success();
 //				ShowMsg.showResult(code, makeErrorMessage(status), activity);
+				new Thread(new Runnable() {
+					@Override
+					public void run() {
+						disconnectPrinter();
+					}
+				}).start();
+
 
 			}
 		});
 	}
 
 	private void showToast(final String message) {
-		cordova.getActivity().runOnUiThread(new Runnable() {
-			public void run() {
-				Toast.makeText(cordova.getActivity(), "Message:  " + message,
+		activity.runOnUiThread(new Runnable() {
+			@Override
+			public synchronized void run() {
+				Toast.makeText(activity, "Message:  " + message,
 						Toast.LENGTH_SHORT).show();
 			}
 		});
