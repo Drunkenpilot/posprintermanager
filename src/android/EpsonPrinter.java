@@ -74,7 +74,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 
     }
 
-    public boolean print(final Bitmap printRaw, final JSONArray addPulse, final int printerSeries, final int lang, final String printTarget) {
+    public boolean print(final Bitmap printRaw, final JSONArray addPulse, final int printerSeries, final int lang, final String printTarget, Activity activity) {
 					//			printRaw Bitmap create by ReceiptBuilderExt
 					//			addPulse cash drawer  [ (0 no , 1 yes), (0-1  2pin, 5pin) , (time 0-4  100ms-500ms) ]
 					//          addSound  Buzzer //TODO
@@ -110,7 +110,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			mPrinter = new Printer(printerSeries,lang, activity);
 		}
 		catch (Exception e) {
-			EpsonPrinter.this.callbackContext.error("e:" + ((Epos2Exception) e).getErrorStatus());
+//			EpsonPrinter.this.callbackContext.error("e:" + ((Epos2Exception) e).getErrorStatus());
 			ShowMsg.showException(e, "Printer", activity);
 			return false;
 		}
@@ -305,7 +305,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			mPrinter.connect(printTarget, Printer.PARAM_DEFAULT);
 		}
 		catch (Exception e) {
-			EpsonPrinter.this.callbackContext.error("e:" + ((Epos2Exception) e).getErrorStatus());
+//			EpsonPrinter.this.callbackContext.error("e:" + ((Epos2Exception) e).getErrorStatus());
 			ShowMsg.showException(e, "connect", activity);
 			return false;
 		}
@@ -315,7 +315,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			isBeginTransaction = true;
 		}
 		catch (Exception e) {
-			EpsonPrinter.this.callbackContext.error("e:" + ((Epos2Exception) e).getErrorStatus());
+//			EpsonPrinter.this.callbackContext.error("e:" + ((Epos2Exception) e).getErrorStatus());
 			ShowMsg.showException(e, "beginTransaction", activity);
 		}
 
