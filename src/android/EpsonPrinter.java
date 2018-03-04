@@ -116,7 +116,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 		}
 
 		mPrinter.setReceiveEventListener(new ReceiveListener() {
-			@Override
+//			@Override
 			public void onPtrReceive(final Printer printerObj, final int code, final PrinterStatusInfo status, final String printJobId) {
 				if(code == Epos2CallbackCode.CODE_SUCCESS){
 					Log.i("调试","调试*");
@@ -133,7 +133,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 									disconnectPrinter();
 								}
 							}).start();
-							
+
 						}
 					});
 				}
