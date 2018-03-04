@@ -32,7 +32,7 @@
       <file leaf-file-name="posprintermanager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/android/posprintermanager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="703">
+            <state relative-caret-position="-265">
               <caret line="50" column="37" lean-forward="false" selection-start-line="50" selection-start-column="37" selection-end-line="50" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -64,14 +64,14 @@
       <file leaf-file-name="EpsonPrinter.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/android/EpsonPrinter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-939">
-              <caret line="358" column="35" lean-forward="true" selection-start-line="358" selection-start-column="35" selection-end-line="358" selection-end-column="35" />
+            <state relative-caret-position="605">
+              <caret line="472" column="47" lean-forward="true" selection-start-line="472" selection-start-column="47" selection-end-line="472" selection-end-column="47" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#9092#9093#0" expanded="true" />
                 <element signature="e#9157#9158#0" expanded="true" />
-                <element signature="e#13067#13068#0" expanded="true" />
-                <element signature="e#13101#13102#0" expanded="true" />
+                <element signature="e#13077#13078#0" expanded="true" />
+                <element signature="e#13111#13112#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -92,6 +92,7 @@
       <find>epsonprinter.</find>
       <find>posprintermanager.</find>
       <find>cordova</find>
+      <find>disconnectPrinter()</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/libs/armeabi-v7a</dir>
@@ -685,7 +686,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1520172795233" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1520173591867" />
       </method>
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests">
@@ -731,7 +732,7 @@
       </Profilers>
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1520172795233" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1520173591867" />
       </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -1002,8 +1003,8 @@
             <element signature="imports" expanded="true" />
             <element signature="e#9092#9093#0" expanded="true" />
             <element signature="e#9157#9158#0" expanded="true" />
-            <element signature="e#13067#13068#0" expanded="true" />
-            <element signature="e#13101#13102#0" expanded="true" />
+            <element signature="e#13077#13078#0" expanded="true" />
+            <element signature="e#13111#13112#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1044,8 +1045,8 @@
             <element signature="imports" expanded="true" />
             <element signature="e#9092#9093#0" expanded="true" />
             <element signature="e#9157#9158#0" expanded="true" />
-            <element signature="e#13067#13068#0" expanded="true" />
-            <element signature="e#13101#13102#0" expanded="true" />
+            <element signature="e#13077#13078#0" expanded="true" />
+            <element signature="e#13111#13112#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1086,8 +1087,8 @@
             <element signature="imports" expanded="true" />
             <element signature="e#9092#9093#0" expanded="true" />
             <element signature="e#9157#9158#0" expanded="true" />
-            <element signature="e#13067#13068#0" expanded="true" />
-            <element signature="e#13101#13102#0" expanded="true" />
+            <element signature="e#13077#13078#0" expanded="true" />
+            <element signature="e#13111#13112#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1280,7 +1281,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/android/posprintermanager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="703">
+        <state relative-caret-position="-265">
           <caret line="50" column="37" lean-forward="false" selection-start-line="50" selection-start-column="37" selection-end-line="50" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1290,14 +1291,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/android/EpsonPrinter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-939">
-          <caret line="358" column="35" lean-forward="true" selection-start-line="358" selection-start-column="35" selection-end-line="358" selection-end-column="35" />
+        <state relative-caret-position="605">
+          <caret line="472" column="47" lean-forward="true" selection-start-line="472" selection-start-column="47" selection-end-line="472" selection-end-column="47" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#9092#9093#0" expanded="true" />
             <element signature="e#9157#9158#0" expanded="true" />
-            <element signature="e#13067#13068#0" expanded="true" />
-            <element signature="e#13101#13102#0" expanded="true" />
+            <element signature="e#13077#13078#0" expanded="true" />
+            <element signature="e#13111#13112#0" expanded="true" />
           </folding>
         </state>
       </provider>
