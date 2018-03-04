@@ -176,7 +176,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 		try {
 
 			//			Generate main content
-			try {
+//			try {
 				method = "addTextAlign";
 				mPrinter.addTextAlign(Printer.ALIGN_LEFT);
 				textData.append("THE STORE 123 (555) 555 – 5555\n");
@@ -266,9 +266,9 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 //				mPrinter.addPulse(drawerPin, signalTime);
 //			}
 
-			} catch (JSONException e){
-
-			}
+//			} catch (JSONException e){
+//
+//			}
 		}
 		catch (Exception e) {
 			ShowMsg.showException(e, method, activity);
