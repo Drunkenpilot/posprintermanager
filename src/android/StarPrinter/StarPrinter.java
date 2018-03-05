@@ -69,18 +69,18 @@ public class StarPrinter extends CordovaPlugin  {
     }else if (action.equals("printReceipt")) {
 
 
-      final  String portName = args.getString(0);
-      final  String portSettings = getPortSettingsOption(portName);
-      Log.d("portSettings","PortSettings : "+ portSettings);
-      // final  String receipt = args.getString(1);
-      final JSONArray receipt = args.optJSONArray(1);
-
-      final  CallbackContext _callbackContext = callbackContext;
-      cordova.getThreadPool().execute(new Runnable() {
-        public void run() {
-          PrintText(portName, portSettings, receipt, _callbackContext);
-        }
-      });
+//      final  String portName = args.getString(0);
+//      final  String portSettings = getPortSettingsOption(portName);
+//      Log.d("portSettings","PortSettings : "+ portSettings);
+//      // final  String receipt = args.getString(1);
+//      final JSONArray receipt = args.optJSONArray(1);
+//
+//      final  CallbackContext _callbackContext = callbackContext;
+//      cordova.getThreadPool().execute(new Runnable() {
+//        public void run() {
+//          PrintText(portName, portSettings, receipt, _callbackContext);
+//        }
+//      });
       return true;
     }
     return false;
@@ -97,8 +97,8 @@ public class StarPrinter extends CordovaPlugin  {
 
     Log.d("portName","portName = "+portName);
     try {
-      ReceiptBuilderExt receiptBuilder = new ReceiptBuilderExt(cordova.getActivity(),[545,0,0,0,15]);
-      Bitmap testImg = receiptBuilder.build(receipt);
+//      ReceiptBuilderExt receiptBuilder = new ReceiptBuilderExt(cordova.getActivity(),[545,0,0,0,15]);
+      Bitmap testImg = null;//receiptBuilder.build(receipt);
       //
       int paperWidth = 576;
 
