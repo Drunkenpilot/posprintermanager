@@ -92,7 +92,7 @@ public class StarPrinter extends CordovaPlugin  {
     Standard, Graphics
   };
 
-  private void PrintText(String portName, String portSettings, JSONArray receipt, CallbackContext callbackContext) {
+  public void PrintText(String portName, String portSettings, JSONArray receipt, CallbackContext callbackContext) {
 
 
     Log.d("portName","portName = "+portName);
@@ -255,7 +255,7 @@ public class StarPrinter extends CordovaPlugin  {
     });
   }
 
-  private void portDiscovery(String strInterface, CallbackContext callbackContext) {
+  public void portDiscovery(String strInterface, CallbackContext callbackContext) {
 
     JSONArray result = new JSONArray();
     try {

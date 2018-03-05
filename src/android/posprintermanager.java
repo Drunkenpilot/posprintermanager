@@ -107,7 +107,12 @@ public class posprintermanager extends CordovaPlugin {
 				}
 			});
         } else if (vendor.equals("STAR")) {
-
+            cordova.getThreadPool().execute(new Runnable() {
+                public void run() {
+                    StarPrinter starPrinter = new StarPrinter();
+                    starPrinter.portDiscovery(type, callbackContext);
+                }
+            });
         } else {
             this.callbackContext.error("no");
         }
