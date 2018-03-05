@@ -92,13 +92,13 @@ public class StarPrinter extends CordovaPlugin  {
     Standard, Graphics
   };
 
-  public void PrintText(String portName, String portSettings, JSONArray receipt, CallbackContext callbackContext) {
+  public void PrintText(String portName, String portSettings, Bitmap receipt, Activity activity, CallbackContext callbackContext) {
 
 
     Log.d("portName","portName = "+portName);
     try {
 //      ReceiptBuilderExt receiptBuilder = new ReceiptBuilderExt(cordova.getActivity(),[545,0,0,0,15]);
-      Bitmap testImg = null;//receiptBuilder.build(receipt);
+//      Bitmap testImg = null;//receiptBuilder.build(receipt);
       //
       int paperWidth = 576;
 
@@ -113,13 +113,13 @@ public class StarPrinter extends CordovaPlugin  {
         if (portSettings.toUpperCase(Locale.US).contains("PORTABLE")) {
           rasterType = RasterCommand.Graphics;
         }
-        PrintBitmap(cordova.getActivity().getApplicationContext(), cordova.getActivity(), portName, portSettings, testImg, paperWidth, compressionEnable, rasterType, callbackContext);
+        PrintBitmap(activity.getApplicationContext(), activity, portName, portSettings, receipt, paperWidth, compressionEnable, rasterType, callbackContext);
       }
     }catch (IllegalArgumentException e) {
-      postMessage("Failure", "Size is too large.");
+      postMessage("Failure", "Size is too large.", activity);
       callbackContext.error("Failure: Size is too large.");
     } catch (OutOfMemoryError e) {
-      postMessage("Failure", "Size is too large.");
+      postMessage("Failure", "Size is too large.", activity);
       callbackContext.error("Failure: Size is too large.");
     }
 
@@ -233,9 +233,9 @@ public class StarPrinter extends CordovaPlugin  {
 
   }
 
-  protected void postMessage(String titleText, String messageText) {
+  protected void postMessage(String titleText, String messageText, Activity activity) {
 
-    AlertDialog.Builder dialog = new AlertDialog.Builder(cordova.getActivity());
+    AlertDialog.Builder dialog = new AlertDialog.Builder(activity);
     dialog.setNegativeButton("Ok", null);
     AlertDialog alert = dialog.create();
     alert.setTitle(titleText);
@@ -259,13 +259,13 @@ public class StarPrinter extends CordovaPlugin  {
     try {
 
       if (strInterface.equals("LAN")) {
-        result = getPortDiscovery("LAN");
+        result = getPortDiscovery("LAN", activity);
       } else if (strInterface.equals("Bluetooth")) {
-        result = getPortDiscovery("Bluetooth");
+        result = getPortDiscovery("Bluetooth", activity);
       } else if (strInterface.equals("USB")) {
-        result = getPortDiscovery("USB");
+        result = getPortDiscovery("USB", activity);
       } else {
-        result = getPortDiscovery("All");
+        result = getPortDiscovery("All", activity);
       }
 
     } catch (StarIOPortException exception) {
@@ -281,7 +281,7 @@ public class StarPrinter extends CordovaPlugin  {
   }
 
 
-  private JSONArray getPortDiscovery(String interfaceName) throws StarIOPortException, JSONException {
+  private JSONArray getPortDiscovery(String interfaceName, Activity activity) throws StarIOPortException, JSONException {
     List<PortInfo> BTPortList;
     List<PortInfo> TCPPortList;
     List<PortInfo> USBPortList;

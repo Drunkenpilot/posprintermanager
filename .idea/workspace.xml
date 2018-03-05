@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ce24c247-5e6e-4eb0-ab32-4abb431236b3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/android/posprintermanager.java" afterPath="$PROJECT_DIR$/src/android/posprintermanager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/android/StarPrinter/StarPrinter.java" afterPath="$PROJECT_DIR$/src/android/StarPrinter/StarPrinter.java" />
     </list>
     <ignored path="posprintermanager.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,10 +29,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="posprintermanager.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="posprintermanager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/android/posprintermanager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="684">
+            <state relative-caret-position="521">
               <caret line="121" column="75" lean-forward="false" selection-start-line="121" selection-start-column="75" selection-end-line="121" selection-end-column="75" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -84,11 +84,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StarPrinter.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="StarPrinter.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/android/StarPrinter/StarPrinter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="503">
-              <caret line="121" column="43" lean-forward="true" selection-start-line="121" selection-start-column="43" selection-end-line="121" selection-end-column="43" />
+            <state relative-caret-position="263">
+              <caret line="116" column="7" lean-forward="true" selection-start-line="116" selection-start-column="7" selection-end-line="116" selection-end-column="7" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -128,6 +128,7 @@
       <find>this</find>
       <find>cordova.gett</find>
       <find>JSONException</find>
+      <find>postMessage</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/libs/armeabi-v7a</dir>
@@ -347,8 +348,8 @@
         <option value="$PROJECT_DIR$/src/android/res/xml/device_filter.xml" />
         <option value="$PROJECT_DIR$/plugin.xml" />
         <option value="$PROJECT_DIR$/src/android/EpsonPrinter/EpsonPrinter.java" />
-        <option value="$PROJECT_DIR$/src/android/StarPrinter/StarPrinter.java" />
         <option value="$PROJECT_DIR$/src/android/posprintermanager.java" />
+        <option value="$PROJECT_DIR$/src/android/StarPrinter/StarPrinter.java" />
       </list>
     </option>
   </component>
@@ -741,7 +742,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1520218202375" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1520218686702" />
       </method>
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests">
@@ -787,7 +788,7 @@
       </Profilers>
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1520218202375" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1520218686702" />
       </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -1434,16 +1435,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/android/StarPrinter/StarPrinter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="503">
-          <caret line="121" column="43" lean-forward="true" selection-start-line="121" selection-start-column="43" selection-end-line="121" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/android/EpsonPrinter/EpsonPrinter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
@@ -1457,8 +1448,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/android/posprintermanager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="684">
+        <state relative-caret-position="521">
           <caret line="121" column="75" lean-forward="false" selection-start-line="121" selection-start-column="75" selection-end-line="121" selection-end-column="75" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/android/StarPrinter/StarPrinter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="116" column="7" lean-forward="true" selection-start-line="116" selection-start-column="7" selection-end-line="116" selection-end-column="7" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
