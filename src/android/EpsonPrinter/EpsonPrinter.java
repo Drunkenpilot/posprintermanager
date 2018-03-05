@@ -81,13 +81,8 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 					//			printerSeries  example { "model": "TM-T20, TM-T20II, TM-T20II-i", "value": "6" }
 					//			lang ANK model 0, Simplified Chinese model 1, etc
 					//          printTarget USB:/dev/////  BT: // TCP:192.168.1.101
-		new Thread (new Runnable() {
-			@Override
-			public void run() {
-				runPrintReceiptSequence(printRaw, addPulse, printerSeries, lang, printTarget);
-			}
-		}).start();
 
+				runPrintReceiptSequence(printRaw, addPulse, printerSeries, lang, printTarget);
 	}
 
 
@@ -350,7 +345,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			mPrinter.endTransaction();
 		}
 		catch (final Exception e) {
-			EpsonPrinter.this.callbackContext.error("e:" + ((Epos2Exception) e).getErrorStatus());
+//			EpsonPrinter.this.callbackContext.error("e:" + ((Epos2Exception) e).getErrorStatus());
 			activity.runOnUiThread(new Runnable() {
 				@Override
 				public synchronized void run() {
@@ -366,7 +361,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			showToast("disconnected");
 		}
 		catch (final Exception e) {
-			EpsonPrinter.this.callbackContext.error("e:" + ((Epos2Exception) e).getErrorStatus());
+//			EpsonPrinter.this.callbackContext.error("e:" + ((Epos2Exception) e).getErrorStatus());
 			activity.runOnUiThread(new Runnable() {
 				@Override
 				public synchronized void run() {

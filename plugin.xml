@@ -24,6 +24,7 @@
         <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
         <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
         <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+        <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     </config-file>
         
     <config-file target="AndroidManifest.xml" parent="/manifest/application/activity[@android:name='MainActivity']" mode="overwrite">
@@ -37,6 +38,7 @@
     
           
     <config-file target="res/values/strings.xml" parent="/*">
+        <string name="btn_discovery">Discovery</string>
         <string name="title_target">Target</string>
         <string name="title_printerseries">Printer Series</string>
         <string name="title_lang">Lang</string>
@@ -103,8 +105,13 @@
     
     <source-file src="src/android/posprintermanager.java" target-dir="src/cordova/plugin/posprintermanager" />
     <source-file src="src/android/ReceiptBuilderExt.java" target-dir="src/cordova/plugin/posprintermanager" />
-    <source-file src="src/android/EpsonPrinter.java" target-dir="src/cordova/plugin/posprintermanager" />
-    <source-file src="src/android/ShowMsg.java" target-dir="src/cordova/plugin/posprintermanager" />
+    <source-file src="src/android/EpsonPrinter/EpsonPrinter.java" target-dir="src/cordova/plugin/posprintermanager" />
+    <source-file src="src/android/EpsonPrinter/ShowMsg.java" target-dir="src/cordova/plugin/posprintermanager" />
+    <source-file src="src/android/StarPrinter/StarPrinter.java" target-dir="src/cordova/plugin/posprintermanager" />
+    <source-file src="src/android/StarPrinter/StarBitmap.java" target-dir="src/cordova/plugin/posprintermanager" />
+    <source-file src="src/android/StarPrinter/RasterDocument.java" target-dir="src/cordova/plugin/posprintermanager" />
+    <!--<source-file src="libs/StarIOPort.jar" target-dir="libs" />-->
+    <source-file src="libs/StarIOPort3.1.jar" target-dir="libs" />
     <source-file src="libs/ePOS2.jar" target-dir="libs" />
     <source-file src="libs/armeabi/libepos2.so" target-dir="libs/armeabi" />
     <source-file src="libs/armeabi-v7a/libepos2.so" target-dir="libs/armeabi-v7a/" />
