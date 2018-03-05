@@ -73,7 +73,7 @@ public class posprintermanager extends CordovaPlugin {
             final String filename = args.optString(2);
             cordova.getThreadPool().execute(new Runnable() {
 				public void run() {
-                    buildImage(printContent, printCanvas filename);
+                    buildImage(printContent, printCanvas, filename);
                 }
             });
             return true;
@@ -174,7 +174,7 @@ public class posprintermanager extends CordovaPlugin {
         this.verifyStoragePermissions(cordova.getActivity());
 
         try{
-         Bitmap printRaw = buildPrintRaw(printData, printCanvas);
+         Bitmap printRaw = buildPrintRaw(printContent, printCanvas);
         //save Bitmap to file
 
         String path = Environment.getExternalStorageDirectory().toString();
