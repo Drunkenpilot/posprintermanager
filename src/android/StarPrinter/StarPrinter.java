@@ -286,7 +286,7 @@ public class StarPrinter extends CordovaPlugin  {
     List<PortInfo> TCPPortList;
     List<PortInfo> USBPortList;
 
-    final Context context = this.cordova.getActivity();
+    final Context context = cordova.getActivity();
     final ArrayList<PortInfo> arrayDiscovery = new ArrayList<PortInfo>();
 
     JSONArray arrayPorts = new JSONArray();
