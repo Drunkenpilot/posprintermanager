@@ -115,8 +115,6 @@ public class StarPrinter extends CordovaPlugin  {
         }
         PrintBitmap(cordova.getActivity().getApplicationContext(), cordova.getActivity(), portName, portSettings, testImg, paperWidth, compressionEnable, rasterType, callbackContext);
       }
-    }catch(JSONException e){
-
     }catch (IllegalArgumentException e) {
       postMessage("Failure", "Size is too large.");
       callbackContext.error("Failure: Size is too large.");
