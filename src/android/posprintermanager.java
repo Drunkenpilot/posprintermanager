@@ -54,7 +54,7 @@ public class posprintermanager extends CordovaPlugin {
     private CallbackContext callbackContext = null;
 
 
-    private static final String AppExternalDataDir = "/BetaResto/";
+    private static final String AppExternalDataDir = "/BetaResto/images";
 
     @Override
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
@@ -69,11 +69,11 @@ public class posprintermanager extends CordovaPlugin {
 
         if(action.equals("buildImage")) {
             final JSONArray printContent = args.optJSONArray(0);
-            final int printTemplate = args.optInt(1);
-            final JSONArray printCanvas = args.optJSONArray(2);
+            final JSONArray printCanvas = args.optJSONArray(1);
+            final String filename = args.optString(2);
             cordova.getThreadPool().execute(new Runnable() {
 				public void run() {
-                    buildImage(printContent, printTemplate, printCanvas);
+                    buildImage(printContent, printCanvas filename);
                 }
             });
             return true;
@@ -169,17 +169,15 @@ public class posprintermanager extends CordovaPlugin {
     }
 
 
-    private void buildImage(final JSONArray printContent, final int printTemplate, final JSONArray printCanvas) {
+    private void buildImage(final JSONArray printContent,  final JSONArray printCanvas, final String filename) {
 
         this.verifyStoragePermissions(cordova.getActivity());
 
         try{
-        ReceiptBuilderExt receiptBuilder = new ReceiptBuilderExt(cordova.getActivity(), printCanvas);
-        Bitmap testImg = receiptBuilder.build(printContent);
+         Bitmap printRaw = buildPrintRaw(printData, printCanvas);
         //save Bitmap to file
 
         String path = Environment.getExternalStorageDirectory().toString();
-        String filename = "test.jpg";    
         File file = new File(path + AppExternalDataDir , filename);
         FileOutputStream fOut = new FileOutputStream(file);
         testImg.compress(Bitmap.CompressFormat.JPEG, 85, fOut);
