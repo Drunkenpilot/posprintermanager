@@ -92,9 +92,9 @@ public class StarPrinter extends CordovaPlugin  {
     Standard, Graphics
   };
 
-  public void PrintText(String portName, String portSettings, Bitmap receipt, Activity activity, CallbackContext callbackContext) {
+  public void PrintText(String portName, Bitmap receipt, Activity activity, CallbackContext callbackContext) {
 
-
+          final  String portSettings = getPortSettingsOption(portName);
     Log.d("portName","portName = "+portName);
     try {
 //      ReceiptBuilderExt receiptBuilder = new ReceiptBuilderExt(cordova.getActivity(),[545,0,0,0,15]);

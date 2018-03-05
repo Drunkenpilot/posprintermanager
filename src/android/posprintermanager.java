@@ -146,7 +146,7 @@ public class posprintermanager extends CordovaPlugin {
                 public void run() {
                     Bitmap printRaw = buildPrintRaw(printData, printCanvas);
                     StarPrinter starPrinter = new StarPrinter();
-                    starPrinter.PrintText(model, address, printRaw, cordova.getActivity(), callbackContext);
+                    starPrinter.PrintText( address, printRaw, cordova.getActivity(), callbackContext);
                     printRaw = null;
                 }
             });
