@@ -118,19 +118,15 @@ public class posprintermanager extends CordovaPlugin {
     private void initPrint(final String vendor,  final JSONArray printData, final JSONArray printCanvas, final JSONArray pulse, final int model, final int lang, final String address) {
         if(vendor.equals("EPSON")) {
 
-//            cordova.getThreadPool().execute(new Runnable() {
-//                public void run() {
-            try {
+            cordova.getThreadPool().execute(new Runnable() {
+                public void run() {
                 Bitmap printRaw = buildPrintRaw(printData, printCanvas);
                 EpsonPrinter epsonPrinter = new EpsonPrinter(cordova.getActivity(), callbackContext);
                 epsonPrinter.print(printRaw, pulse, model, lang, address, cordova.getActivity());
                 printRaw = null;
-            } catch (Exception e){
-                Log.e("TestError: ", Log.getStackTraceString(e));
-                this.callbackContext.error(Log.getStackTraceString(e));
-            }
-//                }
-//            });
+
+                }
+            });
         } else if (vendor.equals("STAR")) {
 
         } else {

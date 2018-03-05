@@ -81,7 +81,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 					//			printerSeries  example { "model": "TM-T20, TM-T20II, TM-T20II-i", "value": "6" }
 					//			lang ANK model 0, Simplified Chinese model 1, etc
 					//          printTarget USB:/dev/////  BT: // TCP:192.168.1.101
-		CordovaInterface.getThreadPool().execute(new Runnable() {
+		this.cordova.getThreadPool().execute(new Runnable() {
 			@Override
 			public void run() {
 				runPrintReceiptSequence(printRaw, addPulse, printerSeries, lang, printTarget);
