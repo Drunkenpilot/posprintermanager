@@ -50,25 +50,25 @@ public class StarPrinter extends CordovaPlugin  {
     // your init code here
   }
 
-  @Override
-  public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-    if (action.equals("checkStatus")) {
-        String portName = args.getString(0);
-        String portSettings = getPortSettingsOption(portName);
-        this.checkStatus(portName, portSettings, callbackContext);
-        return true;
-    }else if (action.equals("portDiscovery")) {
-      final String port = args.getString(0);
-      final  CallbackContext _callbackContext = callbackContext;
-      cordova.getThreadPool().execute(new Runnable() {
-        public void run() {
-          portDiscovery(port, _callbackContext);
-        }
-      });
-      return true;
-    }else if (action.equals("printReceipt")) {
-
-
+//  @Override
+//  public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+//    if (action.equals("checkStatus")) {
+//        String portName = args.getString(0);
+//        String portSettings = getPortSettingsOption(portName);
+//        this.checkStatus(portName, portSettings, callbackContext);
+//        return true;
+//    }else if (action.equals("portDiscovery")) {
+//      final String port = args.getString(0);
+//      final  CallbackContext _callbackContext = callbackContext;
+//      cordova.getThreadPool().execute(new Runnable() {
+//        public void run() {
+//          portDiscovery(port, _callbackContext);
+//        }
+//      });
+//      return true;
+//    }else if (action.equals("printReceipt")) {
+//
+//
 //      final  String portName = args.getString(0);
 //      final  String portSettings = getPortSettingsOption(portName);
 //      Log.d("portSettings","PortSettings : "+ portSettings);
@@ -81,11 +81,11 @@ public class StarPrinter extends CordovaPlugin  {
 //          PrintText(portName, portSettings, receipt, _callbackContext);
 //        }
 //      });
-      return true;
-    }
-    return false;
-
-  }
+//      return true;
+//    }
+//    return false;
+//
+//  }
 
 
   public enum RasterCommand {
@@ -253,7 +253,7 @@ public class StarPrinter extends CordovaPlugin  {
     });
   }
 
-  public void portDiscovery(String strInterface, CallbackContext callbackContext) {
+  public void portDiscovery(String strInterface, Activity activity, CallbackContext callbackContext) {
 
     JSONArray result = new JSONArray();
     try {
@@ -286,7 +286,7 @@ public class StarPrinter extends CordovaPlugin  {
     List<PortInfo> TCPPortList;
     List<PortInfo> USBPortList;
 
-    final Context context = cordova.getActivity();
+    final Context context = activity;
     final ArrayList<PortInfo> arrayDiscovery = new ArrayList<PortInfo>();
 
     JSONArray arrayPorts = new JSONArray();
