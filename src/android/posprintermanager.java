@@ -1,7 +1,9 @@
 package cordova.plugin.posprintermanager;
 
-import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
+import org.apache.cordova.CordovaInterface;
+import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.CordovaWebView;
 
 import java.io.FileOutputStream;
 // import java.io.OutputStream;
