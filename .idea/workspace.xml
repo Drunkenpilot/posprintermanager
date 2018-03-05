@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ce24c247-5e6e-4eb0-ab32-4abb431236b3" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/android/EpsonPrinter.java" afterPath="$PROJECT_DIR$/src/android/EpsonPrinter/EpsonPrinter.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/android/ShowMsg.java" afterPath="$PROJECT_DIR$/src/android/EpsonPrinter/ShowMsg.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugin.xml" afterPath="$PROJECT_DIR$/plugin.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/android/res/xml/device_filter.xml" afterPath="$PROJECT_DIR$/src/android/res/xml/device_filter.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/android/StarPrinter/StarPrinter.java" afterPath="$PROJECT_DIR$/src/android/StarPrinter/StarPrinter.java" />
     </list>
     <ignored path="posprintermanager.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,7 +32,7 @@
       <file leaf-file-name="posprintermanager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/android/posprintermanager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="528">
+            <state relative-caret-position="407">
               <caret line="125" column="32" lean-forward="true" selection-start-line="125" selection-start-column="32" selection-end-line="125" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -48,7 +44,7 @@
       <file leaf-file-name="plugin.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/plugin.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
+            <state relative-caret-position="465">
               <caret line="31" column="85" lean-forward="true" selection-start-line="31" selection-start-column="85" selection-end-line="31" selection-end-column="85" />
               <folding />
             </state>
@@ -75,10 +71,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EpsonPrinter.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="EpsonPrinter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/android/EpsonPrinter/EpsonPrinter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1744">
+            <state relative-caret-position="7022">
               <caret line="471" column="0" lean-forward="true" selection-start-line="471" selection-start-column="0" selection-end-line="471" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -89,12 +85,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StarPrinter.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="StarPrinter.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/android/StarPrinter/StarPrinter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="23">
-              <caret line="23" column="44" lean-forward="true" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
-              <folding />
+            <state relative-caret-position="307">
+              <caret line="99" column="101" lean-forward="true" selection-start-line="99" selection-start-column="101" selection-end-line="99" selection-end-column="101" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -343,10 +341,10 @@
         <option value="$PROJECT_DIR$/src/android/EpsonPrinter.java" />
         <option value="$PROJECT_DIR$/src/android/StarPrinter/StarBitmap.java" />
         <option value="$PROJECT_DIR$/src/android/StarPrinter/RasterDocument.java" />
-        <option value="$PROJECT_DIR$/src/android/StarPrinter/StarPrinter.java" />
         <option value="$PROJECT_DIR$/src/android/res/xml/device_filter.xml" />
         <option value="$PROJECT_DIR$/plugin.xml" />
         <option value="$PROJECT_DIR$/src/android/EpsonPrinter/EpsonPrinter.java" />
+        <option value="$PROJECT_DIR$/src/android/StarPrinter/StarPrinter.java" />
       </list>
     </option>
   </component>
@@ -739,7 +737,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1520211469073" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1520212120725" />
       </method>
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests">
@@ -785,7 +783,7 @@
       </Profilers>
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1520211469073" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1520212120725" />
       </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -1316,16 +1314,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/android/posprintermanager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="125" column="32" lean-forward="true" selection-start-line="125" selection-start-column="32" selection-end-line="125" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/android/StarPrinter/RasterDocument.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1352,22 +1340,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/android/StarPrinter/StarPrinter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="23" column="44" lean-forward="true" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plugin.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="31" column="85" lean-forward="true" selection-start-line="31" selection-start-column="85" selection-end-line="31" selection-end-column="85" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/android/res/xml/device_filter.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -1378,12 +1350,40 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/android/EpsonPrinter/EpsonPrinter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1744">
+        <state relative-caret-position="7022">
           <caret line="471" column="0" lean-forward="true" selection-start-line="471" selection-start-column="0" selection-end-line="471" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#9230#9231#0" expanded="true" />
             <element signature="e#9295#9296#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plugin.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" column="85" lean-forward="true" selection-start-line="31" selection-start-column="85" selection-end-line="31" selection-end-column="85" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/android/posprintermanager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="407">
+          <caret line="125" column="32" lean-forward="true" selection-start-line="125" selection-start-column="32" selection-end-line="125" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/android/StarPrinter/StarPrinter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="99" column="101" lean-forward="true" selection-start-line="99" selection-start-column="101" selection-end-line="99" selection-end-column="101" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -15,7 +15,6 @@ import android.graphics.Paint;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.github.danielfelgar.drawreceiptlib.star.ReceiptBuilder;
 
 import com.starmicronics.stario.PortInfo;
 import com.starmicronics.stario.StarIOPort;
@@ -98,7 +97,7 @@ public class StarPrinter extends CordovaPlugin  {
 
     Log.d("portName","portName = "+portName);
     try {
-      ReceiptBuilderExt receiptBuilder = new ReceiptBuilderExt(cordova.getActivity());
+      ReceiptBuilderExt receiptBuilder = new ReceiptBuilderExt(cordova.getActivity(),[545,0,0,0,15]);
       Bitmap testImg = receiptBuilder.build(receipt);
       //
       int paperWidth = 576;
