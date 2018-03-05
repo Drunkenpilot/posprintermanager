@@ -55,6 +55,12 @@ public class posprintermanager extends CordovaPlugin {
     private static final String AppExternalDataDir = "/BetaResto/";
 
     @Override
+    public void initialize(CordovaInterface cordova, CordovaWebView webView) {
+        super.initialize(cordova, webView);
+        // your init code here
+    }
+
+    @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 
         this.callbackContext = callbackContext;
@@ -110,6 +116,7 @@ public class posprintermanager extends CordovaPlugin {
             cordova.getThreadPool().execute(new Runnable() {
                 public void run() {
                     StarPrinter starPrinter = new StarPrinter();
+                    starPrinter.initialize(cordova, webview);
                     starPrinter.portDiscovery(type, callbackContext);
                 }
             });
