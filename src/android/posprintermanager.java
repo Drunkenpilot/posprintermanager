@@ -180,7 +180,7 @@ public class posprintermanager extends CordovaPlugin {
         String path = Environment.getExternalStorageDirectory().toString();
         File file = new File(path + AppExternalDataDir , filename);
         FileOutputStream fOut = new FileOutputStream(file);
-        testImg.compress(Bitmap.CompressFormat.JPEG, 85, fOut);
+        printRaw.compress(Bitmap.CompressFormat.JPEG, 85, fOut);
         fOut.close();    
         this.showToast("Image built");
         callbackContext.success(path  + AppExternalDataDir + filename);
