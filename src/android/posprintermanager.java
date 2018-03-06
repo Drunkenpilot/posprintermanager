@@ -54,7 +54,7 @@ public class posprintermanager extends CordovaPlugin {
     private CallbackContext callbackContext = null;
 
 
-    private static final String AppExternalDataDir = "/BetaResto/images";
+    private static final String AppExternalDataDir = "/BetaResto/images/";
 
     @Override
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
@@ -180,7 +180,7 @@ public class posprintermanager extends CordovaPlugin {
         String path = Environment.getExternalStorageDirectory().toString();
         File file = new File(path + AppExternalDataDir , filename);
         FileOutputStream fOut = new FileOutputStream(file);
-        printRaw.compress(Bitmap.CompressFormat.JPEG, 85, fOut);
+        printRaw.compress(Bitmap.CompressFormat.JPEG, 100, fOut);
         fOut.close();    
         this.showToast("Image built");
         callbackContext.success(path  + AppExternalDataDir + filename);
