@@ -2,11 +2,11 @@ var exec = require('cordova/exec');
 
 exports.buildImage = function(args, success, error) {
     args = JSON.parse(args);
-    printContent = args.printContent;
+    printData = args.printData;
     filename = args.filename;
     printCanvas = args.printCanvas;
     exec(success, error, "posprintermanager", "buildImage", [
-        [printContent],  printCanvas, filename
+        [printData],  printCanvas, filename
     ]);
 };
 
