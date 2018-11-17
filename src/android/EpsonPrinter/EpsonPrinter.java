@@ -74,7 +74,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 
     }
 
-    public void print(final Bitmap printRaw, final JSONArray addPulse, final int printerSeries, final int lang, final String printTarget, Activity activity) {
+    public void print(final Bitmap printRaw, final JSONArray addPulse, final int printerSeries, final int lang, final String printTarget, Activity activity, CallbackContext callbackContext) {
 					//			printRaw Bitmap create by ReceiptBuilderExt
 					//			addPulse cash drawer  [ (0 no , 1 yes), (0-1  2pin, 5pin) , (time 0-4  100ms-500ms) ]
 					//          addSound  Buzzer //TODO
@@ -82,7 +82,11 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 					//			lang ANK model 0, Simplified Chinese model 1, etc
 					//          printTarget USB:/dev/////  BT: // TCP:192.168.1.101
 
-				runPrintReceiptSequence(printRaw, addPulse, printerSeries, lang, printTarget);
+				if(runPrintReceiptSequence(printRaw, addPulse, printerSeries, lang, printTarget)) {
+					callbackContext.success("Success");
+				} else {
+					callbackContext.error("Failure: Size is too large.");
+				};
 	}
 
 
@@ -112,6 +116,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 		}
 		catch (Exception e) {
 //			EpsonPrinter.this.callbackContext.error("e:" + ((Epos2Exception) e).getErrorStatus());
+//			callbackContext.error("e:" + ((Epos2Exception) e).getErrorStatus());
 			ShowMsg.showException(e, "Printer", activity);
 			return false;
 		}
@@ -137,7 +142,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 		// dispPrinterWarnings(status);
 
 		if (!isPrintable(status)) {
-//			EpsonPrinter.this.callbackContext.error("e:" + makeErrorMessage(status));
+
 			ShowMsg.showMsg(makeErrorMessage(status), activity);
 			try {
 				mPrinter.disconnect();
@@ -145,6 +150,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			catch (Exception ex) {
 				// Do nothing
 			}
+
 			return false;
 		}
 
@@ -273,6 +279,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 //			}
 		}
 		catch (Exception e) {
+//			callbackContext.error("e:" + ((Epos2Exception) e).getErrorStatus());
 			ShowMsg.showException(e, method, activity);
 			return false;
 		}
