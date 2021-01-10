@@ -54,12 +54,13 @@ public class posprintermanager extends CordovaPlugin {
     private CallbackContext callbackContext = null;
 
 
-    private static final String AppExternalDataDir = "/images/";
+    private String AppCacheDir = null;
 
     @Override
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
         // your init code here
+        AppCacheDir = cordova.getActivity().getExternalCacheDir().toString();
     }
 
     @Override
@@ -71,9 +72,10 @@ public class posprintermanager extends CordovaPlugin {
             final JSONArray printContent = args.optJSONArray(0);
             final JSONArray printCanvas = args.optJSONArray(1);
             final String filename = args.optString(2);
+            String fileDir = args.optString(3);
             cordova.getThreadPool().execute(new Runnable() {
 				public void run() {
-                    buildImage(printContent, printCanvas, filename);
+                    buildImage(printContent, printCanvas, filename, fileDir);
                 }
             });
             return true;
@@ -169,20 +171,21 @@ public class posprintermanager extends CordovaPlugin {
     }
 
 
-    private void buildImage(final JSONArray printContent,  final JSONArray printCanvas, final String filename) {
+    private void buildImage(final JSONArray printContent,  final JSONArray printCanvas, final String filename, String fileDir) {
 
         this.verifyStoragePermissions(cordova.getActivity());
 
         try{
-        Bitmap printRaw = buildPrintRaw(printContent, printCanvas);
+         Bitmap printRaw = buildPrintRaw(printContent, printCanvas);
         //save Bitmap to file
-        String path = cordova.getActivity().getExternalCacheDir().toString();
-        File file = new File(path + AppExternalDataDir , filename);
+
+        String path = fileDir != null? AppCacheDir + '/' + fileDir : AppCacheDir ;
+        File file = new File(path, filename);
         FileOutputStream fOut = new FileOutputStream(file);
         printRaw.compress(Bitmap.CompressFormat.JPEG, 100, fOut);
         fOut.close();    
         this.showToast("Image built");
-        callbackContext.success(path  + AppExternalDataDir + filename);
+        callbackContext.success(path + '/' + filename);
         }  catch (Exception e) {
             Log.e("TestError: ", Log.getStackTraceString(e));
             this.callbackContext.error(Log.getStackTraceString(e));

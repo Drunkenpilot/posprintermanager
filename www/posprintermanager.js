@@ -1,16 +1,17 @@
 var exec = require('cordova/exec');
 
-exports.buildImage = function(args, success, error) {
+exports.buildImage = function (args, success, error) {
     args = JSON.parse(args);
     printData = args.printData;
-    filename = args.filename;
     printCanvas = args.printCanvas;
+    filename = args.filename;
+    fileDir = args.fileDir;
     exec(success, error, "posprintermanager", "buildImage", [
-        [printData],  printCanvas, filename
+        [printData], printCanvas, filename, fileDir
     ]);
 };
 
-exports.search = function(args, success, error) {
+exports.search = function (args, success, error) {
     args = JSON.parse(args);
     timeout = args.timeout;
     vendor = args.vendor;
@@ -20,7 +21,7 @@ exports.search = function(args, success, error) {
     ]);
 };
 
-exports.print = function(args, success, error) {
+exports.print = function (args, success, error) {
     args = JSON.parse(args);
     vendor = args.vendor;
     printData = args.printData;
