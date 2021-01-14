@@ -4,13 +4,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.betaresto.terminal.R;
 import com.github.danielfelgar.drawreceiptlib.ReceiptBuilder;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.Base64;
 import android.util.Log;
 
 public class ReceiptBuilderExt {
@@ -38,12 +39,6 @@ public class ReceiptBuilderExt {
 
 	public ReceiptBuilderExt(Activity activity, JSONArray printCanvas) {
 		Log.i("打印数据","打印数据1");
-		// int width = activity.getResources().getInteger(R.integer.width);
-		// int marginBottom = activity.getResources().getInteger(R.integer.marginBottom);
-		// int marginLeft = activity.getResources().getInteger(R.integer.marginLeft);
-		// int marginRight = activity.getResources().getInteger(R.integer.marginRight);
-		// int marginTop = activity.getResources().getInteger(R.integer.marginTop);
-
 
 		int width = printCanvas.optInt(0);
 		int marginTop = printCanvas.optInt(1);
@@ -78,6 +73,11 @@ public class ReceiptBuilderExt {
 		for (int i = 0; i < oneLine.length(); i++) {
 			JSONObject elem = oneLine.getJSONObject(i);
 			Log.i("elem.toString()",elem.toString());
+
+			if (!elem.has("name")) {
+				continue;
+			}
+
 			String name = elem.getString("name");
 			if (name == null || name.length() == 0) {
 				continue;
@@ -98,11 +98,18 @@ public class ReceiptBuilderExt {
 				buildAlign(elem);
 			} else if (name.equals("TextSize")) {
 				buildTextSize(elem);
+			} else if(name.equals("BgColor")) {
+				setBackgroudColor(elem);
 			} else {
 				continue;
 			}
 		}
 
+	}
+
+	private void setBackgroudColor(JSONObject elem) {
+		int value = elem.optInt("value");
+		builder.setBackgroudColor(value);
 	}
 
 	private void buildTextSize(JSONObject elem) {
@@ -139,9 +146,13 @@ public class ReceiptBuilderExt {
 	}
 
 	private void buildImage(JSONObject elem) {
-//		Bitmap barcode = BitmapFactory.decodeResource(activity.getResources(), R.drawable.barcode);
-//		builder.addImage(bitmap);
+		final String encodedImage = elem.optString("value");
+		final String pureBase64Encoded = encodedImage.substring(encodedImage.indexOf(",")  + 1);
+		final byte[] decodedBytes = Base64.decode(pureBase64Encoded, Base64.DEFAULT);
+		Bitmap bitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
+		builder.addImage(bitmap);
 	}
+
 
 	private void buildText(JSONObject elem) {
 		String value=elem.optString("value");

@@ -107,28 +107,19 @@
 
         <source-file src="src/android/posprintermanager.java" target-dir="src/cordova/plugin/posprintermanager" />
         <source-file src="src/android/ReceiptBuilderExt.java" target-dir="src/cordova/plugin/posprintermanager" />
+        <source-file src="src/android/ImageUtil.java" target-dir="src/cordova/plugin/posprintermanager" />
         <source-file src="src/android/EpsonPrinter/EpsonPrinter.java" target-dir="src/cordova/plugin/posprintermanager" />
         <source-file src="src/android/EpsonPrinter/ShowMsg.java" target-dir="src/cordova/plugin/posprintermanager" />
         <source-file src="src/android/StarPrinter/StarPrinter.java" target-dir="src/cordova/plugin/posprintermanager" />
         <source-file src="src/android/StarPrinter/StarBitmap.java" target-dir="src/cordova/plugin/posprintermanager" />
         <source-file src="src/android/StarPrinter/RasterDocument.java" target-dir="src/cordova/plugin/posprintermanager" />
-        <!--<source-file src="libs/StarIOPort.jar" target-dir="libs" />-->
-        <!-- <source-file src="libs/StarIOPort3.1.jar" target-dir="libs" />
-    <source-file src="libs/ePOS2.jar" target-dir="libs" /> -->
-        <!-- <source-file src="libs/armeabi/libepos2.so" target-dir="libs/armeabi" />
-        <source-file src="libs/armeabi-v7a/libepos2.so" target-dir="libs/armeabi-v7a/" />
-        <source-file src="libs/arm64-v8a/libepos2.so" target-dir="libs/arm64-v8a/" /> -->
+
         <source-file src="libs/armeabi/libepos2.so" target-dir="jniLibs/armeabi" />
         <source-file src="libs/armeabi-v7a/libepos2.so" target-dir="jniLibs/armeabi-v7a/" />
         <source-file src="libs/arm64-v8a/libepos2.so" target-dir="jniLibs/arm64-v8a/" />
 
         <lib-file src="libs/StarIOPort3.1.jar" arch="device" />
         <lib-file src="libs/ePOS2.jar" arch="device" />
-
-        <!-- <lib-file src="libs/armeabi/libepos2.so" arch="device" />
-        <lib-file src="libs/armeabi-v7a/libepos2.so" arch="device" />
-        <lib-file src="libs/arm64-v8a/libepos2.so" arch="device" /> -->
-
 
         <!-- DEBUG - these files are not needed for production -->
         <!-- Custom gradle file to setup NDK for debugging -->
