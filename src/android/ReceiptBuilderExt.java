@@ -27,7 +27,7 @@ public class ReceiptBuilderExt {
 	 *  element:
 	 *  	Text(string,[boolean]),Image(Bitmap),BlankSpace(int),Paragraph,Line([int]);
 	 *  	Typeface(string), Align(LEFT,CENTER,RIGHT), TextSize(float)
-
+	
 	 * {
 	 * 	name: element, required
 	 * 	value: string / int,
@@ -38,26 +38,25 @@ public class ReceiptBuilderExt {
 	 */
 
 	public ReceiptBuilderExt(Activity activity, JSONArray printCanvas) {
-		Log.i("打印数据","打印数据1");
+		Log.i("打印数据", "打印数据1");
 
 		int width = printCanvas.optInt(0);
 		int marginTop = printCanvas.optInt(1);
 		int marginRight = printCanvas.optInt(2);
 		int marginBottom = printCanvas.optInt(3);
 		int marginLeft = printCanvas.optInt(4);
-		
 
-
-		Log.d("width","Width = " + width);
+		Log.d("width", "Width = " + width);
 		this.activity = activity;
 		builder = new ReceiptBuilder(width);
 		builder.setColor(Color.BLACK);
-		builder.setMarginBottom(marginBottom).setMarginLeft(marginLeft).setMarginRight(marginRight).setMarginTop(marginTop);
+		builder.setMarginBottom(marginBottom).setMarginLeft(marginLeft).setMarginRight(marginRight)
+				.setMarginTop(marginTop);
 	}
 
 	public Bitmap build(JSONArray printContent) throws JSONException {
 		if (printContent == null || printContent.length() == 0) {
-			Log.i("printContent","printContent is null");
+			Log.i("printContent", "printContent is null");
 			return null;
 		}
 
@@ -72,7 +71,7 @@ public class ReceiptBuilderExt {
 	private void line(JSONArray oneLine) throws JSONException {
 		for (int i = 0; i < oneLine.length(); i++) {
 			JSONObject elem = oneLine.getJSONObject(i);
-			Log.i("elem.toString()",elem.toString());
+			Log.i("elem.toString()", elem.toString());
 
 			if (!elem.has("name")) {
 				continue;
@@ -98,7 +97,7 @@ public class ReceiptBuilderExt {
 				buildAlign(elem);
 			} else if (name.equals("TextSize")) {
 				buildTextSize(elem);
-			} else if(name.equals("BgColor")) {
+			} else if (name.equals("BgColor")) {
 				setBackgroudColor(elem);
 			} else {
 				continue;
@@ -146,21 +145,18 @@ public class ReceiptBuilderExt {
 	}
 
 	private void buildImage(JSONObject elem) {
-		final String encodedImage = elem.optString("value");
-		final String pureBase64Encoded = encodedImage.substring(encodedImage.indexOf(",")  + 1);
-		final byte[] decodedBytes = Base64.decode(pureBase64Encoded, Base64.DEFAULT);
-		Bitmap bitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
+		final String encodedBase64Url = elem.optString("value");
+		Bitmap bitmap = ImageUtil.convert(encodedBase64Url);
 		builder.addImage(bitmap);
 	}
 
-
 	private void buildText(JSONObject elem) {
-		String value=elem.optString("value");
-		if(elem.isNull("newLine")){
+		String value = elem.optString("value");
+		if (elem.isNull("newLine")) {
 			builder.addText(value);
 		} else {
 			boolean newLine = elem.optBoolean("newLine");
-			Log.i("newLine","newLine = "+newLine);
+			Log.i("newLine", "newLine = " + newLine);
 			builder.addText(value, newLine);
 		}
 
