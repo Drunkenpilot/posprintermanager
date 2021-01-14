@@ -1,9 +1,9 @@
 {
-  "name": "posprintermanager",
-  "version": "0.0.3",
+  "name": "cordova-plugin-posprintermanager",
+  "version": "0.0.32",
   "description": "Pos Printer Manager",
   "cordova": {
-    "id": "cordova.plugin.posprintermanager",
+    "id": "cordova-plugin-posprintermanager",
     "platforms": []
   },
   "repository": {
