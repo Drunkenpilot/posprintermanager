@@ -147,6 +147,31 @@ public class ReceiptBuilderExt {
 	private void buildImage(JSONObject elem) {
 		final String encodedBase64Url = elem.optString("value");
 		Bitmap bitmap = ImageUtil.convert(encodedBase64Url);
+		int newWidth = 0;
+		int newHeight = 0;
+		if (elem.has("scale")) {
+			float scale = elem.getDouble("scale");
+			bitmap = ImageUtil.resizeScale(bm, scale, true);
+		}
+
+		if (elem.has("width")) {
+			newWidth = elem.getInt("width");
+		}
+		if(elem.has("height")) {
+			newHeight = elem.getInt("height");
+		}
+		if(newWidth>0 || newHeight > 0) {
+			bitmap = ImageUtil.resize(bm, newWidth, newWidth, true);
+		}
+
+		if (elem.has("maxImageSize")) {
+			float maxImageSize = elem.getDouble("maxImageSize");
+			bitmap = ImageUtil.scaleDown(bitmap, maxImageSize, true);
+		}
+		if (elem.has("minImageSize")) {
+			float minImageSize = elem.getDouble("minImageSize");
+			bitmap = ImageUtil.scaleUp(bitmap, minImageSize, true);
+		}
 		builder.addImage(bitmap);
 	}
 
