@@ -195,10 +195,10 @@ public class posprintermanager extends CordovaPlugin {
             final String uri = contentProvider + file.getAbsolutePath();
             JSONObject item = new JSONObject();
 
-            item.put("filePath", uri);
+            item.put("uri", uri);
             item.put("base64URL", "data:image/jpeg;base64," + ImageUtil.convert(printRaw));
-            item.put("bitmapWidth", bitmapWidth);
-            item.put("bitmapHeight", bitmapHeight);
+            item.put("paperWidth", bitmapWidth);
+            item.put("paperHeight", bitmapHeight);
 
             JSONObject event = new JSONObject();
             final String eventName = "CANVAS_BUILT";
