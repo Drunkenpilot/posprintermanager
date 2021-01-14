@@ -8,10 +8,8 @@ import com.github.danielfelgar.drawreceiptlib.ReceiptBuilder;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.util.Base64;
 import android.util.Log;
 
 public class ReceiptBuilderExt {
@@ -149,28 +147,32 @@ public class ReceiptBuilderExt {
 		Bitmap bitmap = ImageUtil.convert(encodedBase64Url);
 		int newWidth = 0;
 		int newHeight = 0;
+		boolean filter = true;
+		if(elem.has("filter")) {
+			filter = elem.optBoolean("filter");
+		}
 		if (elem.has("scale")) {
-			float scale = elem.getDouble("scale");
-			bitmap = ImageUtil.resizeScale(bm, scale, true);
+			double scale = elem.optDouble("scale");
+			bitmap = ImageUtil.resizeScale(bitmap, scale, filter);
 		}
 
 		if (elem.has("width")) {
-			newWidth = elem.getInt("width");
+			newWidth = elem.optInt("width");
 		}
 		if(elem.has("height")) {
-			newHeight = elem.getInt("height");
+			newHeight = elem.optInt("height");
 		}
 		if(newWidth>0 || newHeight > 0) {
-			bitmap = ImageUtil.resize(bm, newWidth, newWidth, true);
+			bitmap = ImageUtil.resize(bitmap, newWidth, newWidth, filter);
 		}
 
 		if (elem.has("maxImageSize")) {
-			float maxImageSize = elem.getDouble("maxImageSize");
-			bitmap = ImageUtil.scaleDown(bitmap, maxImageSize, true);
+			int maxImageSize = elem.optInt("maxImageSize");
+			bitmap = ImageUtil.scaleDown(bitmap, maxImageSize, filter);
 		}
 		if (elem.has("minImageSize")) {
-			float minImageSize = elem.getDouble("minImageSize");
-			bitmap = ImageUtil.scaleUp(bitmap, minImageSize, true);
+			int minImageSize = elem.optInt("minImageSize");
+			bitmap = ImageUtil.scaleUp(bitmap, minImageSize, filter);
 		}
 		builder.addImage(bitmap);
 	}
