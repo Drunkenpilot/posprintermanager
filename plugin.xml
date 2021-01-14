@@ -118,8 +118,8 @@
         <source-file src="libs/armeabi-v7a/libepos2.so" target-dir="jniLibs/armeabi-v7a/" />
         <source-file src="libs/arm64-v8a/libepos2.so" target-dir="jniLibs/arm64-v8a/" />
 
-        <lib-file src="libs/StarIOPort3.1.jar" arch="device" />
-        <lib-file src="libs/ePOS2.jar" arch="device" />
+        <source-file src="libs/StarIOPort3.1.jar"  target-dir="libs"/>
+        <source-file src="libs/ePOS2.jar" target-dir="libs" />
 
         <!-- DEBUG - these files are not needed for production -->
         <!-- Custom gradle file to setup NDK for debugging -->
