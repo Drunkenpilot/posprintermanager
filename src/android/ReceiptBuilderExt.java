@@ -163,7 +163,7 @@ public class ReceiptBuilderExt {
 			newHeight = elem.optInt("height");
 		}
 		if(newWidth>0 || newHeight > 0) {
-			bitmap = ImageUtil.resize(bitmap, newWidth, newWidth, filter);
+			bitmap = ImageUtil.resize(bitmap, newWidth, newHeight, filter);
 		}
 
 		if (elem.has("maxImageSize")) {
