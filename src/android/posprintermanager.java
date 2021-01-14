@@ -174,6 +174,8 @@ public class posprintermanager extends CordovaPlugin {
 
         try {
             Bitmap printRaw = buildPrintRaw(printContent, printCanvas);
+            final int bitmapWidth = printRaw.getWidth();
+            final int bitmapHeight = printRaw.getHeight();
             // check dirs
             String path = fileDir != null ? AppCacheDir + '/' + fileDir : AppCacheDir;
 
@@ -191,7 +193,10 @@ public class posprintermanager extends CordovaPlugin {
 
             JSONObject item = new JSONObject();
             item.put("filePath", path + '/' + filename);
-            item.put("base64Url", "data:image/jpeg;base64," + ImageUtil.convert(printRaw));
+            item.put("base64URL", "data:image/jpeg;base64," + ImageUtil.convert(printRaw));
+            item.put("bitmapWidth", bitmapWidth);
+            item.put("bitmapHeight", bitmapHeight);
+
             JSONObject event = new JSONObject();
             final String eventName = "CANVAS_BUILT";
             event.put("name", eventName);
