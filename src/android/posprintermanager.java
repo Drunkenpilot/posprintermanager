@@ -191,8 +191,11 @@ public class posprintermanager extends CordovaPlugin {
             fOut.close();
             // this.showToast("Image built");
 
+            final String contentProvider = "file://";
+            final String uri = contentProvider + file.getAbsolutePath();
             JSONObject item = new JSONObject();
-            item.put("filePath", path + '/' + filename);
+
+            item.put("filePath", uri);
             item.put("base64URL", "data:image/jpeg;base64," + ImageUtil.convert(printRaw));
             item.put("bitmapWidth", bitmapWidth);
             item.put("bitmapHeight", bitmapHeight);
