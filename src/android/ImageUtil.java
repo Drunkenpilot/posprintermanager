@@ -27,14 +27,14 @@ public class ImageUtil {
         float scaleHeight = 0;
 
         if(newWidth>0 && newHeight>0) {
-            scaleWidth = ((float) newWidth) / width;
-            scaleHeight = ((float) newHeight) / height;
+            scaleWidth = (float)newWidth /(float)width;
+            scaleHeight = (float)newHeight / (float)height;
         } else if(newWidth > 0) {
-            scaleWidth = ((float) newWidth) / width;
-            scaleHeight = ((float) height * scaleWidth) / height;
+            scaleWidth = (float)newWidth / (float)width;
+            scaleHeight = (float)height * scaleWidth / (float)height;
         } else if(newHeight > 0) {
-            scaleHeight = ((float) newHeight) / height;
-            scaleWidth = ((float) width * scaleHeight) / width;
+            scaleHeight = (float)newHeight / (float)height;
+            scaleWidth = (float)width * scaleHeight /(float)width;
         } else {
             return bm;
         }
@@ -56,8 +56,8 @@ public class ImageUtil {
         double newWidth = width * scale;
         double newHeight = height * scale;
 
-        float scaleWidth = (float) newWidth / width;
-        float scaleHeight = (float) newHeight / height;
+        float scaleWidth = (float)newWidth / (float)width;
+        float scaleHeight = (float)newHeight / (float)height;
 
         // CREATE A MATRIX FOR THE MANIPULATION
         Matrix matrix = new Matrix();
@@ -72,8 +72,8 @@ public class ImageUtil {
 
     public static Bitmap scaleDown(Bitmap realImage, int maxImageSize, boolean filter) {
 
-        float ratio = Math.min( maxImageSize / realImage.getWidth(),
-                maxImageSize / realImage.getHeight());
+        float ratio = Math.min( (float)maxImageSize / (float)realImage.getWidth(),
+                (float)maxImageSize / (float)realImage.getHeight());
 
         if (ratio >= 1.0) {
             return realImage;
@@ -81,14 +81,16 @@ public class ImageUtil {
 
         int width = Math.round(ratio * realImage.getWidth());
         int height = Math.round(ratio * realImage.getHeight());
+
+        Bitmap resizedBitmap = Bitmap.createScaledBitmap(realImage, width, height, filter);
         realImage.recycle();
-        return Bitmap.createScaledBitmap(realImage, width, height, filter);
+        return resizedBitmap;
     }
 
     public static Bitmap scaleUp(Bitmap realImage, int minImageSize, boolean filter) {
 
-        float ratio = Math.min( minImageSize / realImage.getWidth(),
-                minImageSize / realImage.getHeight());
+        float ratio = Math.min( (float)minImageSize / (float)realImage.getWidth(),
+                (float)minImageSize / (float)realImage.getHeight());
 
         if (ratio <= 1.0) {
             return realImage;
@@ -96,8 +98,10 @@ public class ImageUtil {
 
         int width = Math.round(ratio * realImage.getWidth());
         int height = Math.round(ratio * realImage.getHeight());
+
+        Bitmap resizedBitmap = Bitmap.createScaledBitmap(realImage, width, height, filter);
         realImage.recycle();
-        return Bitmap.createScaledBitmap(realImage, width, height, filter);
+        return  resizedBitmap;
     }
 
 }
